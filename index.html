@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>EPS-TOPIK Vocabulary - Chapters 1-60</title>
+  <title>Random Play - Korean & Nepali Flashcards</title>
   <style>
     :root {
       --header-bg: #5b00ff;
@@ -48,16 +48,6 @@
       position: relative;
     }
 
-    /* Views container */
-    .view-screen {
-      display: none;
-      flex-direction: column;
-      flex: 1;
-    }
-    .view-screen.active {
-      display: flex;
-    }
-
     /* Top Header */
     .top-bar {
       background-color: var(--header-bg);
@@ -90,64 +80,27 @@
     }
 
     .app-title {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 600;
       letter-spacing: 0.2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 250px;
     }
 
     .practice-btn {
       background-color: var(--practice-btn);
       color: #ffffff;
       border: none;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 6px;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       letter-spacing: 0.5px;
       cursor: pointer;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: transform 0.1s ease, background-color 0.2s;
     }
 
-    /* Chapters List View */
-    .chapters-list {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .chapter-item {
-      background-color: var(--card-bg);
-      border-radius: 10px;
-      padding: 16px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #1f2937;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-      transition: background-color 0.2s, transform 0.1s;
-    }
-
-    .chapter-item:active {
-      transform: scale(0.98);
-      background-color: #cbd1f0;
-    }
-
-    .chapter-count {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.7);
-      padding: 3px 8px;
-      border-radius: 10px;
+    .practice-btn:active {
+      transform: scale(0.96);
     }
 
     /* Control Toolbar */
@@ -171,7 +124,7 @@
     }
 
     .auto-play-label {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: #1f2937;
       white-space: nowrap;
@@ -181,7 +134,7 @@
     .switch {
       position: relative;
       display: inline-block;
-      width: 42px;
+      width: 44px;
       height: 24px;
     }
 
@@ -220,19 +173,20 @@
     }
 
     input:checked + .slider-toggle:before {
-      transform: translateX(18px);
+      transform: translateX(20px);
       background-color: var(--teal-accent);
     }
 
+    /* Circular Toggles */
     .circle-toggles {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .circle-btn {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: none;
       background-color: var(--toggle-inactive);
@@ -241,6 +195,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
@@ -248,10 +203,15 @@
       background-color: var(--toggle-active);
     }
 
+    .circle-btn:active {
+      transform: scale(0.93);
+    }
+
+    /* Speed Slider */
     .speed-slider-wrap {
       display: flex;
       align-items: center;
-      width: 70px;
+      width: 85px;
     }
 
     input[type="range"].teal-slider {
@@ -265,13 +225,16 @@
 
     input[type="range"].teal-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 15px;
-      height: 15px;
+      appearance: none;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       background: var(--teal-accent);
       cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
+    /* Sub-bar for utility actions */
     .sub-bar {
       background-color: #f9fafb;
       padding: 6px 16px;
@@ -285,7 +248,7 @@
 
     .sub-actions {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -293,9 +256,9 @@
       background: #eef2ff;
       color: #4338ca;
       border: none;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 12px;
-      font-size: 0.73rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
     }
@@ -312,7 +275,6 @@
       flex-direction: column;
       gap: 8px;
       flex: 1;
-      overflow-y: auto;
     }
 
     .vocab-card {
@@ -326,6 +288,7 @@
       justify-content: center;
       text-align: center;
       cursor: pointer;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.1s ease;
       min-height: 58px;
       user-select: none;
     }
@@ -364,7 +327,7 @@
     }
 
     .nepali-word {
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       font-weight: 600;
       margin-top: 6px;
       color: #1f2937;
@@ -386,6 +349,7 @@
       display: inline-block;
     }
 
+    /* Card Action Icons */
     .heart-btn {
       position: absolute;
       right: 12px;
@@ -394,7 +358,11 @@
       border: none;
       cursor: pointer;
       padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--heart-inactive);
+      transition: transform 0.15s ease, color 0.15s ease;
     }
 
     .heart-btn.favorited {
@@ -419,6 +387,7 @@
       justify-content: center;
       cursor: pointer;
       color: #374151;
+      opacity: 0.75;
     }
 
     .vocab-card.active .edit-card-btn {
@@ -443,10 +412,17 @@
       justify-content: center;
       cursor: pointer;
       z-index: 40;
+      transition: transform 0.15s ease;
     }
 
     @media (max-width: 480px) {
-      .fab-add { right: 20px; }
+      .fab-add {
+        right: 20px;
+      }
+    }
+
+    .fab-add:active {
+      transform: scale(0.92);
     }
 
     /* Modals */
@@ -461,7 +437,9 @@
       padding: 16px;
     }
 
-    .modal-backdrop.open { display: flex; }
+    .modal-backdrop.open {
+      display: flex;
+    }
 
     .modal-card {
       background: #ffffff;
@@ -481,19 +459,69 @@
       margin-bottom: 16px;
     }
 
-    .modal-title { font-size: 1.1rem; font-weight: 700; }
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
 
-    .form-group { margin-bottom: 14px; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #374151; }
-    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; outline: none; }
+    .form-group {
+      margin-bottom: 14px;
+    }
 
-    .btn-row { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
-    .btn { padding: 9px 16px; border-radius: 8px; border: none; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
-    .btn-secondary { background: #e5e7eb; color: #374151; }
-    .btn-primary { background: var(--header-bg); color: #ffffff; }
-    .btn-danger { background: #fee2e2; color: #b91c1c; margin-right: auto; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #374151;
+    }
 
-    /* Practice Mode Overlay */
+    .form-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--header-bg);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .btn {
+      padding: 9px 16px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-primary {
+      background: var(--header-bg);
+      color: #ffffff;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #b91c1c;
+      margin-right: auto;
+    }
+
+    /* Practice Mode View */
     .practice-overlay {
       position: fixed;
       inset: 0;
@@ -503,7 +531,10 @@
       flex-direction: column;
       align-items: center;
     }
-    .practice-overlay.open { display: flex; }
+
+    .practice-overlay.open {
+      display: flex;
+    }
 
     .practice-container {
       width: 100%;
@@ -538,85 +569,101 @@
       cursor: pointer;
     }
 
-    .practice-controls { display: flex; gap: 12px; width: 100%; margin-top: 24px; }
-    .practice-controls .btn { flex: 1; padding: 13px; font-size: 1rem; }
+    .practice-controls {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      margin-top: 24px;
+    }
 
-    .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+    .practice-controls .btn {
+      flex: 1;
+      padding: 13px;
+      font-size: 1rem;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>
   <div class="app-container">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button class="icon-btn" id="shuffleBtn" title="Shuffle Words" aria-label="Shuffle Words">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <span class="app-title">Random Play</span>
+      </div>
+      <button class="practice-btn" id="openPracticeBtn">PRACTICE</button>
+    </header>
 
-    <!-- SCREEN 1: CHAPTERS HOME SCREEN -->
-    <div id="homeScreen" class="view-screen active">
-      <header class="top-bar">
-        <div class="top-bar-left">
-          <span class="app-title">EPS-TOPIK Chapters (1-60)</span>
-        </div>
-      </header>
-      <div class="chapters-list" id="chaptersListContainer">
-        <!-- Chapters generated by JS -->
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="auto-play-group">
+        <span class="auto-play-label">Auto Play</span>
+        <label class="switch">
+          <input type="checkbox" id="autoPlayToggle" />
+          <span class="slider-toggle"></span>
+        </label>
+      </div>
+
+      <div class="circle-toggles">
+        <!-- Translation Toggle Button -->
+        <button class="circle-btn active" id="toggleTranslationBtn" title="Show/Hide Translations" aria-label="Show/Hide Translations">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 8 6 6"/>
+            <path d="m4 14 6-6 2-3"/>
+            <path d="M2 5h12"/>
+            <path d="M7 2h1"/>
+            <path d="m22 22-5-10-5 10"/>
+            <path d="M14 18h6"/>
+          </svg>
+        </button>
+
+        <!-- Picture Toggle Button -->
+        <button class="circle-btn active" id="toggleImageBtn" title="Show/Hide Pictures" aria-label="Show/Hide Pictures">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="3" ry="3"/>
+            <circle cx="9" cy="9" r="2"/>
+            <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Speed Slider -->
+      <div class="speed-slider-wrap" title="Auto Play Speed">
+        <input type="range" min="1" max="5" value="3" class="teal-slider" id="speedSlider" />
       </div>
     </div>
 
-    <!-- SCREEN 2: VOCABULARY FLASHCARD VIEW -->
-    <div id="vocabScreen" class="view-screen">
-      <header class="top-bar">
-        <div class="top-bar-left">
-          <button class="icon-btn" id="backToHomeBtn" title="Back to Chapters" aria-label="Back">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-          </button>
-          <span class="app-title" id="chapterTitleHeader">Chapter 1</span>
-        </div>
-        <button class="practice-btn" id="openPracticeBtn">PRACTICE</button>
-      </header>
-
-      <!-- Controls Bar -->
-      <div class="controls-bar">
-        <div class="auto-play-group">
-          <span class="auto-play-label">Auto Play</span>
-          <label class="switch">
-            <input type="checkbox" id="autoPlayToggle" />
-            <span class="slider-toggle"></span>
-          </label>
-        </div>
-
-        <div class="circle-toggles">
-          <button class="circle-btn active" id="toggleTranslationBtn" title="Toggle Translation">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
-          </button>
-          <button class="circle-btn active" id="toggleImageBtn" title="Toggle Pictures">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-          </button>
-        </div>
-
-        <div class="speed-slider-wrap">
-          <input type="range" min="1" max="5" value="3" class="teal-slider" id="speedSlider" />
-        </div>
+    <!-- Utility Sub-bar -->
+    <div class="sub-bar">
+      <span id="wordCountText">10 words</span>
+      <div class="sub-actions">
+        <button class="chip-btn" id="filterFavBtn">Favorites Only</button>
+        <button class="chip-btn" id="openBulkBtn">Bulk Import</button>
+        <button class="chip-btn" id="shuffleListBtn">Shuffle</button>
+        <button class="chip-btn" id="resetDefaultBtn">Reset</button>
       </div>
-
-      <!-- Sub-bar -->
-      <div class="sub-bar">
-        <span id="wordCountText">0 words</span>
-        <div class="sub-actions">
-          <button class="chip-btn" id="filterFavBtn">Favorites</button>
-          <button class="chip-btn" id="openBulkBtn">Bulk Import</button>
-          <button class="chip-btn" id="shuffleListBtn">Shuffle</button>
-          <button class="chip-btn" id="resetChapterBtn">Reset Ch 1</button>
-        </div>
-      </div>
-
-      <!-- Vocabulary Cards List -->
-      <main class="cards-list" id="cardsList"></main>
-
-      <!-- Floating Add Button -->
-      <button class="fab-add" id="openAddModalBtn" title="Add Word">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-      </button>
     </div>
 
+    <!-- Main Vocabulary List -->
+    <main class="cards-list" id="cardsList"></main>
+
+    <!-- Floating Add Card Button -->
+    <button class="fab-add" id="openAddModalBtn" title="Add New Word / Picture" aria-label="Add New Word">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+    </button>
   </div>
 
   <!-- Add/Edit Word Modal -->
@@ -624,24 +671,36 @@
     <div class="modal-card">
       <div class="modal-header">
         <h2 class="modal-title" id="modalTitle">Add Vocabulary Card</h2>
-        <button class="icon-btn" id="closeModalBtn">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <button class="icon-btn" id="closeModalBtn" aria-label="Close">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
       </div>
+
       <form id="cardForm">
         <input type="hidden" id="editCardId" />
         <div class="form-group">
-          <label for="koreanInput">Korean Word *</label>
+          <label for="koreanInput">Korean Word / Phrase *</label>
           <input type="text" id="koreanInput" class="form-input" placeholder="e.g., 학교" required />
         </div>
+
         <div class="form-group">
-          <label for="nepaliInput">Nepali Meaning *</label>
+          <label for="nepaliInput">Nepali Translation *</label>
           <input type="text" id="nepaliInput" class="form-input" placeholder="e.g., विद्यालय" required />
         </div>
+
         <div class="form-group">
-          <label for="imageUrlInput">Picture URL</label>
-          <input type="url" id="imageUrlInput" class="form-input" placeholder="https://..." />
+          <label for="imageFileInput">Picture (Upload from device or paste URL)</label>
+          <input type="file" id="imageFileInput" accept="image/*" class="form-input" style="margin-bottom: 8px; padding: 6px;" />
+          <input type="url" id="imageUrlInput" class="form-input" placeholder="Or paste image URL (https://...)" />
+          <div id="imagePreviewWrap" style="margin-top: 8px; display: none; align-items: center; gap: 10px;">
+            <img id="imagePreview" src="" alt="Preview" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid #d1d5db;" />
+            <button type="button" class="chip-btn" id="removeImageBtn" style="background: #fee2e2; color: #b91c1c;">Remove Picture</button>
+          </div>
         </div>
+
         <div class="btn-row">
           <button type="button" class="btn btn-danger" id="deleteCardBtn" style="display: none;">Delete</button>
           <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
@@ -655,12 +714,17 @@
   <div class="modal-backdrop" id="bulkModal">
     <div class="modal-card">
       <div class="modal-header">
-        <h2 class="modal-title">Bulk Import Chapter</h2>
-        <button class="icon-btn" id="closeBulkBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+        <h2 class="modal-title">Bulk Import Vocabulary</h2>
+        <button class="icon-btn" id="closeBulkBtn" aria-label="Close">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
       <div class="form-group">
-        <label for="bulkTextarea">Paste format: <code>Korean - Nepali - ImageURL</code></label>
-        <textarea id="bulkTextarea" class="form-input" rows="8" placeholder="학교 - विद्यालय - https://..."></textarea>
+        <label for="bulkTextarea">Paste lines formatted as: <code>Korean - Nepali</code> (optional <code>- ImageURL</code>)</label>
+        <textarea id="bulkTextarea" class="form-input" rows="8" placeholder="학교 - विद्यालय&#10;학생 - विद्यार्थी&#10;사과 - स्याउ - https://example.com/apple.jpg"></textarea>
       </div>
       <div class="btn-row">
         <button type="button" class="btn btn-secondary" id="cancelBulkBtn">Cancel</button>
@@ -674,11 +738,16 @@
     <div class="practice-container">
       <header class="top-bar">
         <div class="top-bar-left">
-          <button class="icon-btn" id="closePracticeBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+          <button class="icon-btn" id="closePracticeBtn" aria-label="Back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
           <span class="app-title">Practice Mode</span>
         </div>
-        <span id="practiceCounter" style="font-weight: 600; font-size: 0.9rem;">1 / 1</span>
+        <span id="practiceCounter" style="font-weight: 600; font-size: 0.9rem;">1 / 10</span>
       </header>
+
       <div class="practice-body">
         <div class="flashcard-box" id="practiceCard">
           <div id="practiceImgWrap" class="card-image-box" style="width: 180px; height: 155px;"></div>
@@ -686,6 +755,7 @@
           <div id="practiceNepali" class="nepali-word" style="font-size: 1.3rem; margin-top: 12px;"></div>
           <p id="practiceHint" style="font-size: 0.8rem; color: #6b7280; margin-top: 16px;">Tap card to reveal answer</p>
         </div>
+
         <div class="practice-controls">
           <button class="btn btn-secondary" id="practiceSpeakBtn">Listen (KR→NP→KR)</button>
           <button class="btn btn-primary" id="practiceNextBtn">Next Word</button>
@@ -695,201 +765,160 @@
   </div>
 
   <script>
-    // Chapter 1 Initial Dataset from your screenshot
-    const CHAPTER_1_DATA = [
-      { id: 1, korean: "자기소개", nepali: "आत्मपरिचय (Self-Introduction)", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400", favorite: false },
-      { id: 2, korean: "나라 이름", nepali: "देशको नाम (Country Name)", image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400", favorite: false },
-      { id: 3, korean: "한국", nepali: "दक्षिण कोरिया (South Korea)", image: "https://images.unsplash.com/photo-1538485399061-127027357065?w=400", favorite: false },
-      { id: 4, korean: "네팔", nepali: "नेपाल (Nepal)", image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400", favorite: false },
-      { id: 5, korean: "동티모르", nepali: "पूर्वी टिमोर (East Timor)", image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400", favorite: false },
-      { id: 6, korean: "라오스", nepali: "लाओस (Laos)", image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400", favorite: false },
-      { id: 7, korean: "몽골", nepali: "मंगोलिया (Mongolia)", image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400", favorite: false },
-      { id: 8, korean: "미얀마", nepali: "म्यानमार (Myanmar)", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400", favorite: false },
-      { id: 9, korean: "방글라데시", nepali: "बंगलादेश (Bangladesh)", image: "https://images.unsplash.com/photo-1578593141460-845b4a44b82c?w=400", favorite: false },
-      { id: 10, korean: "베트남", nepali: "भियतनाम (Vietnam)", image: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=400", favorite: false },
-      { id: 11, korean: "스리랑카", nepali: "श्रीलंका (Sri Lanka)", image: "https://images.unsplash.com/photo-1588598111609-7f8d80f45d3d?w=400", favorite: false },
-      { id: 12, korean: "우즈베키스탄", nepali: "उज्वेकिस्तान (Uzbekistan)", image: "https://images.unsplash.com/photo-1558862130-9d2c943b1945?w=400", favorite: false },
-      { id: 13, korean: "인도네시아", nepali: "इन्डोनेसिया (Indonesia)", image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=400", favorite: false },
-      { id: 14, korean: "중국", nepali: "चीन (China)", image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400", favorite: false },
-      { id: 15, korean: "캄보디아", nepali: "कम्बोडिया (Cambodia)", image: "https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400", favorite: false },
-      { id: 16, korean: "키르기스스탄", nepali: "किर्गिस्तान (Kyrgyzstan)", image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=400", favorite: false },
-      { id: 17, korean: "타지키스탄", nepali: "ताजकिस्तान (Tajikistan)", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400", favorite: false },
-      { id: 18, korean: "태국", nepali: "थाइल्याण्ड (Thailand)", image: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=400", favorite: false },
-      { id: 19, korean: "파키스탄", nepali: "पाकिस्तान (Pakistan)", image: "https://images.unsplash.com/photo-1605648916361-9bc12ad6a569?w=400", favorite: false },
-      { id: 20, korean: "필리핀", nepali: "फिलिपिन्स (Philippines)", image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400", favorite: false },
-      { id: 21, korean: "예멘", nepali: "यमन (Yemen)", image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400", favorite: false },
-      { id: 22, korean: "사람", nepali: "मानिस (Person)", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", favorite: false },
-      { id: 23, korean: "이름", nepali: "नाम (Name)", image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400", favorite: false },
-      { id: 24, korean: "국적", nepali: "राष्ट्रियता (Nationality)", image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400", favorite: false },
-      { id: 25, korean: "누구", nepali: "को (Who)", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400", favorite: false },
-      { id: 26, korean: "직업명", nepali: "पेसाको नाम (Job Title)", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400", favorite: false },
-      { id: 27, korean: "선생님", nepali: "शिक्षक (Teacher)", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400", favorite: false },
-      { id: 28, korean: "회사원", nepali: "कम्पनी कर्मचारी (Employee)", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400", favorite: false },
-      { id: 29, korean: "학생", nepali: "विद्यार्थी (Student)", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400", favorite: false },
-      { id: 30, korean: "근로자", nepali: "कामदार (Worker)", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400", favorite: false },
-      { id: 31, korean: "경찰관", nepali: "प्रहरी (Police)", image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=400", favorite: false },
-      { id: 32, korean: "소방관", nepali: "दमकलकर्मी (Firefighter)", image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400", favorite: false },
-      { id: 33, korean: "공무원", nepali: "सरकारी कर्मचारी (Official)", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400", favorite: false },
-      { id: 34, korean: "점원", nepali: "पसल सहायक (Store Clerk)", image: "https://images.unsplash.com/photo-1556742049-0a67d553c2a5?w=400", favorite: false },
-      { id: 35, korean: "의사", nepali: "डाक्टर (Doctor)", image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400", favorite: false },
-      { id: 36, korean: "간호사", nepali: "नर्स (Nurse)", image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=400", favorite: false },
-      { id: 37, korean: "요리사", nepali: "शेफ (Chef)", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400", favorite: false },
-      { id: 38, korean: "운전기사", nepali: "ड्राइभर (Driver)", image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400", favorite: false },
-      { id: 39, korean: "기술자", nepali: "प्राविधिक (Technician)", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400", favorite: false },
-      { id: 40, korean: "목수", nepali: "सिकर्मी (Carpenter)", image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400", favorite: false },
-      { id: 41, korean: "농부", nepali: "किसान (Farmer)", image: "https://images.unsplash.com/photo-1595974482597-4f6c4f700363?w=400", favorite: false },
-      { id: 42, korean: "어부", nepali: "माझी (Fisherman)", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400", favorite: false },
-      { id: 43, korean: "네", nepali: "हजुर (Yes)", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400", favorite: false },
-      { id: 44, korean: "아니요", nepali: "होइन (No)", image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=400", favorite: false },
-      { id: 45, korean: "안녕", nepali: "नमस्ते (Hello)", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400", favorite: false },
-      { id: 46, korean: "반가움", nepali: "खुसी (Gladness)", image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400", favorite: false },
-      { id: 47, korean: "제스처", nepali: "इशारा (Gesture)", image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400", favorite: false },
-      { id: 48, korean: "공작인", nepali: "कारखाना कामदार", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400", favorite: false },
-      { id: 49, korean: "발차기", nepali: "किक (Kick)", image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400", favorite: false }
+    // Default Vocabulary Dataset with Real Wikimedia Image URLs
+    const DEFAULT_CARDS = [
+      { id: 1, korean: "학교", nepali: "विद्यालय", image: "https://commons.wikimedia.org/wiki/Special:FilePath/School-building.jpg?width=400", favorite: false },
+      { id: 2, korean: "학생", nepali: "विद्यार्थी", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Student_studying.jpg?width=400", favorite: false },
+      { id: 3, korean: "선생님", nepali: "शिक्षक", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Classroom_Teaching.jpg?width=400", favorite: false },
+      { id: 4, korean: "책", nepali: "किताब", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Open_book_(Unsplash).jpg?width=400", favorite: false },
+      { id: 5, korean: "사과", nepali: "स्याउ", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Red_Apple.jpg?width=400", favorite: false },
+      { id: 6, korean: "물", nepali: "पानी", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Glass_of_Water.JPG?width=400", favorite: false },
+      { id: 7, korean: "음식", nepali: "खाना", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Food_photography..meals.jpg?width=400", favorite: false },
+      { id: 8, korean: "친구", nepali: "साथी", image: "https://commons.wikimedia.org/wiki/Special:FilePath/Friend%27s_smile_Filled_with_friendship_and_good_wishes.jpg?width=400", favorite: false },
+      { id: 9, korean: "집", nepali: "घर", image: "https://commons.wikimedia.org/wiki/Special:FilePath/House.jpg?width=400", favorite: false },
+      { id: 10, korean: "돈", nepali: "पैसा", image: "https://commons.wikimedia.org/wiki/Special:FilePath/US_Dollar_banknotes.jpg?width=400", favorite: false }
     ];
 
-    // State
-    let allChaptersData = {};
-    let currentChapter = 1;
+    // App State
+    let cards = [];
     let showTranslation = true;
     let showImage = true;
     let onlyFavorites = false;
-    let activeCardId = null;
+    let activeCardId = 1;
     let autoPlayActive = false;
     let autoPlayTimer = null;
     let currentSpeechToken = 0;
     let currentSpeechStepLabel = "";
+    let uploadedImageBase64 = "";
 
-    // Practice mode state
+    // Practice Mode State
     let practiceIndex = 0;
     let practiceRevealed = false;
     let practiceDeck = [];
 
-    function loadAllData() {
-      const saved = localStorage.getItem("eps_60_chapters_data_v1");
+    // DOM Elements
+    const cardsListEl = document.getElementById("cardsList");
+    const toggleTranslationBtn = document.getElementById("toggleTranslationBtn");
+    const toggleImageBtn = document.getElementById("toggleImageBtn");
+    const autoPlayToggle = document.getElementById("autoPlayToggle");
+    const speedSlider = document.getElementById("speedSlider");
+    const wordCountText = document.getElementById("wordCountText");
+    const filterFavBtn = document.getElementById("filterFavBtn");
+
+    // Initialize Storage
+    function loadCards() {
+      const saved = localStorage.getItem("kr_np_vocab_cards_v2");
       if (saved) {
         try {
-          allChaptersData = JSON.parse(saved);
+          cards = JSON.parse(saved);
         } catch (e) {
-          allChaptersData = {};
+          cards = [...DEFAULT_CARDS];
         }
+      } else {
+        cards = [...DEFAULT_CARDS];
+        saveCards();
       }
-      // Ensure Chapter 1 exists
-      if (!allChaptersData[1] || allChaptersData[1].length === 0) {
-        allChaptersData[1] = [...CHAPTER_1_DATA];
+      if (cards.length > 0 && !cards.some(c => c.id === activeCardId)) {
+        activeCardId = cards[0].id;
       }
-      // Ensure Chapters 2 to 60 exist as empty arrays if not present
-      for (let i = 2; i <= 60; i++) {
-        if (!allChaptersData[i]) {
-          allChaptersData[i] = [];
-        }
-      }
-      saveAllData();
     }
 
-    function saveAllData() {
-      localStorage.setItem("eps_60_chapters_data_v1", JSON.stringify(allChaptersData));
+    function saveCards() {
+      localStorage.setItem("kr_np_vocab_cards_v2", JSON.stringify(cards));
     }
 
-    // Render Chapters Home Screen
-    function renderChaptersList() {
-      const container = document.getElementById("chaptersListContainer");
-      let html = "";
-      for (let i = 1; i <= 60; i++) {
-        const count = (allChaptersData[i] || []).length;
-        html += `
-          <div class="chapter-item" data-ch="${i}">
-            <span>Chapter ${i} ${i === 1 ? "(자기소개)" : ""}</span>
-            <span class="chapter-count">${count} words</span>
-          </div>
-        `;
-      }
-      container.innerHTML = html;
-
-      document.querySelectorAll(".chapter-item").forEach(item => {
-        item.addEventListener("click", () => {
-          const ch = Number(item.dataset.ch);
-          openChapter(ch);
-        });
-      });
+    function getVisibleCards() {
+      return onlyFavorites ? cards.filter(c => c.favorite) : cards;
     }
 
-    function openChapter(ch) {
-      currentChapter = ch;
-      document.getElementById("chapterTitleHeader").textContent = `Chapter ${ch}`;
-      const cards = allChaptersData[currentChapter] || [];
-      activeCardId = cards.length > 0 ? cards[0].id : null;
-      
-      document.getElementById("homeScreen").classList.remove("active");
-      document.getElementById("vocabScreen").classList.add("active");
-      renderCards();
-    }
-
-    document.getElementById("backToHomeBtn").addEventListener("click", () => {
-      stopAutoPlay();
-      document.getElementById("vocabScreen").classList.remove("active");
-      document.getElementById("homeScreen").classList.add("active");
-      renderChaptersList();
-    });
-
-    // Speech helpers
+    // Speech helper returning a Promise
     function speakUtterance(text, lang, rate, token) {
       return new Promise((resolve) => {
-        if (!("speechSynthesis" in window) || !text) { resolve(); return; }
-        if (token !== currentSpeechToken) { resolve(); return; }
+        if (!("speechSynthesis" in window) || !text) {
+          resolve();
+          return;
+        }
+        if (token !== currentSpeechToken) {
+          resolve();
+          return;
+        }
 
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = lang;
         utterance.rate = rate;
+
+        // Try matching a specific voice for Korean or Nepali/Hindi fallback
         const voices = window.speechSynthesis.getVoices();
         if (lang.startsWith("ko")) {
           const koVoice = voices.find(v => v.lang.toLowerCase().includes("ko"));
           if (koVoice) utterance.voice = koVoice;
         } else if (lang.startsWith("ne")) {
-          const neVoice = voices.find(v => v.lang.toLowerCase().includes("ne")) || voices.find(v => v.lang.toLowerCase().includes("hi"));
+          const neVoice = voices.find(v => v.lang.toLowerCase().includes("ne")) ||
+                          voices.find(v => v.lang.toLowerCase().includes("hi"));
           if (neVoice) utterance.voice = neVoice;
         }
 
         let finished = false;
-        const done = () => { if (!finished) { finished = true; resolve(); } };
+        const done = () => {
+          if (!finished) {
+            finished = true;
+            resolve();
+          }
+        };
+
         utterance.onend = done;
         utterance.onerror = done;
-        setTimeout(done, Math.max(1800, text.length * 220));
+
+        // Safety fallback timeout in case browser speech engine stalls
+        const safetyMs = Math.max(1800, text.length * 220);
+        setTimeout(done, safetyMs);
+
         window.speechSynthesis.speak(utterance);
       });
     }
 
     function pauseMs(ms, token) {
       return new Promise((resolve) => {
-        setTimeout(() => { resolve(token === currentSpeechToken); }, ms);
+        setTimeout(() => {
+          resolve(token === currentSpeechToken);
+        }, ms);
       });
     }
 
-    // 3-Step Pronunciation: Korean -> Nepali -> Korean
+    // Sequential 3-Step Pronunciation: Korean -> Nepali -> Korean
     async function speakCardSequence(card, onComplete) {
       if (!card) return;
       currentSpeechToken++;
       const token = currentSpeechToken;
-      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
 
-      const speedVal = parseInt(document.getElementById("speedSlider").value, 10);
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+
+      const speedVal = parseInt(speedSlider.value, 10);
       const rate = 0.8 + (speedVal - 1) * 0.08;
 
+      // Step 1: Korean (1st time)
       currentSpeechStepLabel = "1/3 Korean";
       updateActiveSpeechBadge();
       await speakUtterance(card.korean, "ko-KR", rate, token);
       if (token !== currentSpeechToken) return;
 
-      if (!(await pauseMs(320, token))) return;
+      const ok1 = await pauseMs(320, token);
+      if (!ok1) return;
 
+      // Step 2: Nepali Translation
       if (card.nepali) {
         currentSpeechStepLabel = "2/3 Nepali";
         updateActiveSpeechBadge();
         await speakUtterance(card.nepali, "ne-NP", rate, token);
         if (token !== currentSpeechToken) return;
-        if (!(await pauseMs(320, token))) return;
+
+        const ok2 = await pauseMs(320, token);
+        if (!ok2) return;
       }
 
+      // Step 3: Korean (2nd time)
       currentSpeechStepLabel = "3/3 Korean";
       updateActiveSpeechBadge();
       await speakUtterance(card.korean, "ko-KR", rate, token);
@@ -897,7 +926,10 @@
 
       currentSpeechStepLabel = "";
       updateActiveSpeechBadge();
-      if (typeof onComplete === "function") onComplete(token);
+
+      if (typeof onComplete === "function") {
+        onComplete(token);
+      }
     }
 
     function updateActiveSpeechBadge() {
@@ -912,241 +944,354 @@
       }
     }
 
-    // Render Cards
-    function getVisibleCards() {
-      const cards = allChaptersData[currentChapter] || [];
-      return onlyFavorites ? cards.filter(c => c.favorite) : cards;
-    }
-
+    // Render Card List
     function renderCards() {
       const visible = getVisibleCards();
-      document.getElementById("wordCountText").textContent = `${visible.length} words`;
+      wordCountText.textContent = `${visible.length} ${visible.length === 1 ? "word" : "words"}`;
 
       if (visible.length === 0) {
-        document.getElementById("cardsList").innerHTML = `
+        cardsListEl.innerHTML = `
           <div class="empty-state">
-            <p style="font-weight: 600; margin-bottom: 6px;">Chapter ${currentChapter} is currently empty</p>
-            <p style="font-size: 0.85rem;">Tap the <strong>+</strong> button below or use <strong>Bulk Import</strong> to add words.</p>
+            <p style="font-weight: 600; margin-bottom: 6px;">No vocabulary cards found</p>
+            <p style="font-size: 0.85rem;">Tap the <strong>+</strong> button below to add words and pictures.</p>
           </div>
         `;
         return;
       }
 
-      document.getElementById("cardsList").innerHTML = visible.map((card) => {
+      cardsListEl.innerHTML = visible.map((card) => {
         const isActive = card.id === activeCardId;
         const hasImage = Boolean(card.image && card.image.trim() !== "");
         const hasTranslation = Boolean(card.nepali && card.nepali.trim() !== "");
 
         return `
           <div class="vocab-card ${isActive ? "active" : ""}" data-id="${card.id}">
-            <button class="edit-card-btn" data-edit-id="${card.id}" title="Edit">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+            <button class="edit-card-btn" data-edit-id="${card.id}" title="Edit Card" aria-label="Edit Card">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+              </svg>
             </button>
-            ${showImage && hasImage ? `<div class="card-image-box"><img src="${card.image}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>` : ""}
+
+            ${showImage && hasImage ? `
+              <div class="card-image-box">
+                <img src="${card.image}" alt="${card.korean}" loading="lazy" onerror="this.parentElement.style.display='none'" />
+              </div>
+            ` : ""}
+
             <div class="korean-word">${card.korean}</div>
-            ${showTranslation && hasTranslation ? `<div class="nepali-word">${card.nepali}</div>` : ""}
+
+            ${showTranslation && hasTranslation ? `
+              <div class="nepali-word">${card.nepali}</div>
+            ` : ""}
+
             ${isActive && currentSpeechStepLabel ? `<span class="speech-badge">${currentSpeechStepLabel}</span>` : `<span class="speech-badge" style="display:none;"></span>`}
-            <button class="heart-btn ${card.favorite ? "favorited" : ""}" data-fav-id="${card.id}">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+
+            <button class="heart-btn ${card.favorite ? "favorited" : ""}" data-fav-id="${card.id}" title="Favorite" aria-label="Favorite">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
             </button>
           </div>
         `;
       }).join("");
 
-      document.querySelectorAll(".vocab-card").forEach(el => {
+      // Attach listeners
+      document.querySelectorAll(".vocab-card").forEach((el) => {
         el.addEventListener("click", (e) => {
           if (e.target.closest(".heart-btn") || e.target.closest(".edit-card-btn")) return;
           const id = Number(el.dataset.id);
           activeCardId = id;
-          const card = (allChaptersData[currentChapter] || []).find(c => c.id === id);
+          const card = cards.find(c => c.id === id);
           renderCards();
           if (card) {
-            if (autoPlayActive) runAutoPlayStep();
-            else speakCardSequence(card);
+            if (autoPlayActive) {
+              runAutoPlayStep();
+            } else {
+              speakCardSequence(card);
+            }
           }
         });
       });
 
-      document.querySelectorAll(".heart-btn").forEach(btn => {
+      document.querySelectorAll(".heart-btn").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
           const id = Number(btn.dataset.favId);
-          const card = (allChaptersData[currentChapter] || []).find(c => c.id === id);
-          if (card) { card.favorite = !card.favorite; saveAllData(); renderCards(); }
+          const card = cards.find(c => c.id === id);
+          if (card) {
+            card.favorite = !card.favorite;
+            saveCards();
+            renderCards();
+          }
         });
       });
 
-      document.querySelectorAll(".edit-card-btn").forEach(btn => {
+      document.querySelectorAll(".edit-card-btn").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
-          openEditModal(Number(btn.dataset.editId));
+          const id = Number(btn.dataset.editId);
+          openEditModal(id);
         });
       });
     }
 
-    // Toggles
-    document.getElementById("toggleTranslationBtn").addEventListener("click", function() {
+    // Toggle Buttons Logic
+    toggleTranslationBtn.addEventListener("click", () => {
       showTranslation = !showTranslation;
-      this.classList.toggle("active", showTranslation);
-      renderCards();
-    });
-    document.getElementById("toggleImageBtn").addEventListener("click", function() {
-      showImage = !showImage;
-      this.classList.toggle("active", showImage);
-      renderCards();
-    });
-    document.getElementById("filterFavBtn").addEventListener("click", function() {
-      onlyFavorites = !onlyFavorites;
-      this.classList.toggle("active", onlyFavorites);
+      toggleTranslationBtn.classList.toggle("active", showTranslation);
       renderCards();
     });
 
-    function shuffleCards() {
-      const cards = allChaptersData[currentChapter] || [];
+    toggleImageBtn.addEventListener("click", () => {
+      showImage = !showImage;
+      toggleImageBtn.classList.toggle("active", showImage);
+      renderCards();
+    });
+
+    filterFavBtn.addEventListener("click", () => {
+      onlyFavorites = !onlyFavorites;
+      filterFavBtn.classList.toggle("active", onlyFavorites);
+      renderCards();
+    });
+
+    // Shuffle
+    function shuffleList() {
       for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [cards[i], cards[j]] = [cards[j], cards[i]];
       }
-      saveAllData();
+      saveCards();
       renderCards();
     }
-    document.getElementById("shuffleListBtn").addEventListener("click", shuffleCards);
 
-    document.getElementById("resetChapterBtn").addEventListener("click", () => {
-      if (confirm("Reset Chapter " + currentChapter + " to default data?")) {
-        stopAutoPlay();
-        if (currentChapter === 1) {
-          allChaptersData[1] = [...CHAPTER_1_DATA];
-        } else {
-          allChaptersData[currentChapter] = [];
-        }
-        saveAllData();
-        openChapter(currentChapter);
-      }
+    document.getElementById("shuffleListBtn").addEventListener("click", shuffleList);
+    document.getElementById("shuffleBtn").addEventListener("click", shuffleList);
+
+    document.getElementById("resetDefaultBtn").addEventListener("click", () => {
+      stopAutoPlay();
+      cards = [...DEFAULT_CARDS];
+      activeCardId = cards[0].id;
+      saveCards();
+      renderCards();
     });
 
-    // Auto Play
+    // Auto Play Synchronized with 3-Step Pronunciation
+    function getAutoPlayDelayBetweenCards() {
+      const val = parseInt(speedSlider.value, 10);
+      const delays = { 1: 1800, 2: 1300, 3: 900, 4: 550, 5: 300 };
+      return delays[val] || 900;
+    }
+
     function runAutoPlayStep() {
       if (!autoPlayActive) return;
       const visible = getVisibleCards();
       if (visible.length === 0) return;
-      let idx = visible.findIndex(c => c.id === activeCardId);
-      if (idx === -1) { idx = 0; activeCardId = visible[0].id; }
+
+      let currentIndex = visible.findIndex(c => c.id === activeCardId);
+      if (currentIndex === -1) {
+        currentIndex = 0;
+        activeCardId = visible[0].id;
+      }
 
       renderCards();
       const activeEl = document.querySelector(`.vocab-card[data-id="${activeCardId}"]`);
-      if (activeEl) activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (activeEl) {
+        activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
 
-      speakCardSequence(visible[idx], (token) => {
-        if (!autoPlayActive || token !== currentSpeechToken) return;
+      const currentCard = visible[currentIndex];
+      speakCardSequence(currentCard, (completedToken) => {
+        if (!autoPlayActive || completedToken !== currentSpeechToken) return;
         clearTimeout(autoPlayTimer);
-        const speedVal = parseInt(document.getElementById("speedSlider").value, 10);
-        const delays = { 1: 1800, 2: 1300, 3: 900, 4: 550, 5: 300 };
         autoPlayTimer = setTimeout(() => {
           if (!autoPlayActive) return;
-          const vis = getVisibleCards();
-          if (vis.length === 0) return;
-          const curIdx = vis.findIndex(c => c.id === activeCardId);
-          activeCardId = vis[(curIdx + 1) % vis.length].id;
+          const latestVisible = getVisibleCards();
+          if (latestVisible.length === 0) return;
+          const idx = latestVisible.findIndex(c => c.id === activeCardId);
+          const nextIndex = (idx + 1) % latestVisible.length;
+          activeCardId = latestVisible[nextIndex].id;
           runAutoPlayStep();
-        }, delays[speedVal] || 900);
+        }, getAutoPlayDelayBetweenCards());
       });
+    }
+
+    function startAutoPlay() {
+      const visible = getVisibleCards();
+      if (visible.length === 0) {
+        autoPlayToggle.checked = false;
+        return;
+      }
+      autoPlayActive = true;
+      runAutoPlayStep();
     }
 
     function stopAutoPlay() {
       autoPlayActive = false;
-      document.getElementById("autoPlayToggle").checked = false;
+      autoPlayToggle.checked = false;
       currentSpeechToken++;
       currentSpeechStepLabel = "";
-      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
       clearTimeout(autoPlayTimer);
       updateActiveSpeechBadge();
     }
 
-    document.getElementById("autoPlayToggle").addEventListener("change", (e) => {
+    autoPlayToggle.addEventListener("change", (e) => {
       if (e.target.checked) {
-        if (getVisibleCards().length > 0) { autoPlayActive = true; runAutoPlayStep(); }
-        else e.target.checked = false;
-      } else { stopAutoPlay(); }
+        startAutoPlay();
+      } else {
+        stopAutoPlay();
+      }
     });
 
-    // Modal Add/Edit
+    // Modal Add/Edit Logic
     const cardModal = document.getElementById("cardModal");
+    const cardForm = document.getElementById("cardForm");
+    const modalTitle = document.getElementById("modalTitle");
     const editCardIdInput = document.getElementById("editCardId");
     const koreanInput = document.getElementById("koreanInput");
     const nepaliInput = document.getElementById("nepaliInput");
+    const imageFileInput = document.getElementById("imageFileInput");
     const imageUrlInput = document.getElementById("imageUrlInput");
+    const imagePreviewWrap = document.getElementById("imagePreviewWrap");
+    const imagePreview = document.getElementById("imagePreview");
+    const removeImageBtn = document.getElementById("removeImageBtn");
     const deleteCardBtn = document.getElementById("deleteCardBtn");
 
     function openAddModal() {
       stopAutoPlay();
-      document.getElementById("modalTitle").textContent = "Add Vocabulary Card (Ch " + currentChapter + ")";
+      modalTitle.textContent = "Add Vocabulary Card";
       editCardIdInput.value = "";
       koreanInput.value = "";
       nepaliInput.value = "";
+      imageFileInput.value = "";
       imageUrlInput.value = "";
+      uploadedImageBase64 = "";
+      imagePreviewWrap.style.display = "none";
       deleteCardBtn.style.display = "none";
       cardModal.classList.add("open");
     }
 
     function openEditModal(id) {
       stopAutoPlay();
-      const card = (allChaptersData[currentChapter] || []).find(c => c.id === id);
+      const card = cards.find(c => c.id === id);
       if (!card) return;
-      document.getElementById("modalTitle").textContent = "Edit Card";
+      modalTitle.textContent = "Edit Vocabulary Card";
       editCardIdInput.value = card.id;
       koreanInput.value = card.korean;
       nepaliInput.value = card.nepali;
-      imageUrlInput.value = card.image || "";
+      imageFileInput.value = "";
+      uploadedImageBase64 = card.image || "";
+      imageUrlInput.value = card.image && !card.image.startsWith("data:") ? card.image : "";
+
+      if (uploadedImageBase64) {
+        imagePreview.src = uploadedImageBase64;
+        imagePreviewWrap.style.display = "flex";
+      } else {
+        imagePreviewWrap.style.display = "none";
+      }
+
       deleteCardBtn.style.display = "block";
       cardModal.classList.add("open");
     }
 
-    document.getElementById("openAddModalBtn").addEventListener("click", openAddModal);
-    document.getElementById("closeModalBtn").addEventListener("click", () => cardModal.classList.remove("open"));
-    document.getElementById("cancelModalBtn").addEventListener("click", () => cardModal.classList.remove("open"));
+    function closeModal() {
+      cardModal.classList.remove("open");
+    }
 
-    document.getElementById("cardForm").addEventListener("submit", (e) => {
+    document.getElementById("openAddModalBtn").addEventListener("click", openAddModal);
+    document.getElementById("closeModalBtn").addEventListener("click", closeModal);
+    document.getElementById("cancelModalBtn").addEventListener("click", closeModal);
+
+    imageFileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        uploadedImageBase64 = ev.target.result;
+        imageUrlInput.value = "";
+        imagePreview.src = uploadedImageBase64;
+        imagePreviewWrap.style.display = "flex";
+      };
+      reader.readAsDataURL(file);
+    });
+
+    imageUrlInput.addEventListener("input", (e) => {
+      const url = e.target.value.trim();
+      if (url) {
+        uploadedImageBase64 = url;
+        imagePreview.src = url;
+        imagePreviewWrap.style.display = "flex";
+      } else {
+        uploadedImageBase64 = "";
+        imagePreviewWrap.style.display = "none";
+      }
+    });
+
+    removeImageBtn.addEventListener("click", () => {
+      uploadedImageBase64 = "";
+      imageFileInput.value = "";
+      imageUrlInput.value = "";
+      imagePreviewWrap.style.display = "none";
+    });
+
+    cardForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const korean = koreanInput.value.trim();
       const nepali = nepaliInput.value.trim();
-      const image = imageUrlInput.value.trim();
+      const finalImage = uploadedImageBase64 || imageUrlInput.value.trim();
       const editId = editCardIdInput.value;
-      const cards = allChaptersData[currentChapter] || [];
 
       if (editId) {
         const card = cards.find(c => c.id === Number(editId));
-        if (card) { card.korean = korean; card.nepali = nepali; card.image = image; }
+        if (card) {
+          card.korean = korean;
+          card.nepali = nepali;
+          card.image = finalImage;
+        }
       } else {
         const newId = cards.length > 0 ? Math.max(...cards.map(c => c.id)) + 1 : 1;
-        cards.unshift({ id: newId, korean, nepali, image, favorite: false });
+        cards.unshift({
+          id: newId,
+          korean,
+          nepali,
+          image: finalImage,
+          favorite: false
+        });
         activeCardId = newId;
       }
-      allChaptersData[currentChapter] = cards;
-      saveAllData();
+
+      saveCards();
       renderCards();
-      cardModal.classList.remove("open");
+      closeModal();
     });
 
     deleteCardBtn.addEventListener("click", () => {
       const editId = Number(editCardIdInput.value);
-      allChaptersData[currentChapter] = (allChaptersData[currentChapter] || []).filter(c => c.id !== editId);
-      saveAllData();
+      cards = cards.filter(c => c.id !== editId);
+      saveCards();
       renderCards();
-      cardModal.classList.remove("open");
+      closeModal();
     });
 
-    // Bulk Import Modal
+    // Bulk Import Modal Logic
     const bulkModal = document.getElementById("bulkModal");
-    document.getElementById("openBulkBtn").addEventListener("click", () => { stopAutoPlay(); document.getElementById("bulkTextarea").value = ""; bulkModal.classList.add("open"); });
+    const bulkTextarea = document.getElementById("bulkTextarea");
+
+    document.getElementById("openBulkBtn").addEventListener("click", () => {
+      stopAutoPlay();
+      bulkTextarea.value = "";
+      bulkModal.classList.add("open");
+    });
+
     document.getElementById("closeBulkBtn").addEventListener("click", () => bulkModal.classList.remove("open"));
     document.getElementById("cancelBulkBtn").addEventListener("click", () => bulkModal.classList.remove("open"));
 
     document.getElementById("importBulkBtn").addEventListener("click", () => {
-      const raw = document.getElementById("bulkTextarea").value.trim();
+      const raw = bulkTextarea.value.trim();
       if (!raw) return;
       const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-      let cards = allChaptersData[currentChapter] || [];
       let nextId = cards.length > 0 ? Math.max(...cards.map(c => c.id)) + 1 : 1;
       const newItems = [];
 
@@ -1157,23 +1302,59 @@
           const nepali = parts[1].trim();
           const image = parts.length >= 3 ? parts.slice(2).join("-").trim() : "";
           if (korean && nepali) {
-            newItems.push({ id: nextId++, korean, nepali, image, favorite: false });
+            newItems.push({
+              id: nextId++,
+              korean,
+              nepali,
+              image,
+              favorite: false
+            });
           }
         }
       });
 
       if (newItems.length > 0) {
-        allChaptersData[currentChapter] = [...newItems, ...cards];
+        cards = [...newItems, ...cards];
         activeCardId = newItems[0].id;
-        saveAllData();
+        saveCards();
         renderCards();
       }
       bulkModal.classList.remove("open");
     });
 
-    // Practice Mode
+    // Practice Mode Logic
     const practiceOverlay = document.getElementById("practiceOverlay");
-    let practiceDeck = [];
+    const practiceCounter = document.getElementById("practiceCounter");
+    const practiceImgWrap = document.getElementById("practiceImgWrap");
+    const practiceKorean = document.getElementById("practiceKorean");
+    const practiceNepali = document.getElementById("practiceNepali");
+    const practiceHint = document.getElementById("practiceHint");
+
+    function renderPracticeCard() {
+      if (practiceDeck.length === 0) return;
+      const card = practiceDeck[practiceIndex];
+      practiceCounter.textContent = `${practiceIndex + 1} / ${practiceDeck.length}`;
+      practiceKorean.textContent = card.korean;
+
+      const hasImg = Boolean(card.image && card.image.trim() !== "");
+      if (hasImg && (showImage || practiceRevealed)) {
+        practiceImgWrap.style.display = "flex";
+        practiceImgWrap.innerHTML = `<img src="${card.image}" alt="${card.korean}" />`;
+      } else {
+        practiceImgWrap.style.display = "none";
+      }
+
+      if (practiceRevealed || showTranslation) {
+        practiceNepali.textContent = card.nepali;
+        practiceNepali.style.visibility = "visible";
+        practiceHint.textContent = "Tap 'Next Word' to continue";
+      } else {
+        practiceNepali.textContent = "••••••";
+        practiceNepali.style.visibility = "hidden";
+        practiceHint.textContent = "Tap card to reveal translation & picture";
+      }
+    }
+
     document.getElementById("openPracticeBtn").addEventListener("click", () => {
       stopAutoPlay();
       const visible = getVisibleCards();
@@ -1185,18 +1366,24 @@
       renderPracticeCard();
       speakCardSequence(practiceDeck[0]);
     });
+
     document.getElementById("closePracticeBtn").addEventListener("click", () => {
       currentSpeechToken++;
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
       practiceOverlay.classList.remove("open");
     });
+
     document.getElementById("practiceCard").addEventListener("click", () => {
       practiceRevealed = !practiceRevealed;
       renderPracticeCard();
     });
+
     document.getElementById("practiceSpeakBtn").addEventListener("click", () => {
-      if (practiceDeck[practiceIndex]) speakCardSequence(practiceDeck[practiceIndex]);
+      if (practiceDeck[practiceIndex]) {
+        speakCardSequence(practiceDeck[practiceIndex]);
+      }
     });
+
     document.getElementById("practiceNextBtn").addEventListener("click", () => {
       practiceIndex = (practiceIndex + 1) % practiceDeck.length;
       practiceRevealed = false;
@@ -1204,31 +1391,14 @@
       speakCardSequence(practiceDeck[practiceIndex]);
     });
 
-    function renderPracticeCard() {
-      if (practiceDeck.length === 0) return;
-      const card = practiceDeck[practiceIndex];
-      document.getElementById("practiceCounter").textContent = `${practiceIndex + 1} / ${practiceDeck.length}`;
-      document.getElementById("practiceKorean").textContent = card.korean;
-      const imgWrap = document.getElementById("practiceImgWrap");
-      if (card.image && (showImage || practiceRevealed)) {
-        imgWrap.style.display = "flex";
-        imgWrap.innerHTML = `<img src="${card.image}" alt="" />`;
-      } else { imgWrap.style.display = "none"; }
-      const nep = document.getElementById("practiceNepali");
-      if (practiceRevealed || showTranslation) {
-        nep.textContent = card.nepali; nep.style.visibility = "visible";
-      } else {
-        nep.textContent = "••••••"; nep.style.visibility = "hidden";
-      }
-    }
-
+    // Preload voices
     if ("speechSynthesis" in window) {
       window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
     }
 
-    // Initialize
-    loadAllData();
-    renderChaptersList();
+    // Boot
+    loadCards();
+    renderCards();
   </script>
 </body>
 </html>
