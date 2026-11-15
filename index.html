@@ -260,12 +260,12 @@
                 </div>
 
                 <p class="text-xs text-gray-500 mb-3 leading-relaxed">
-                    Paste up to 100+ lines below. Separate Korean and Nepali with a hyphen (<code class="bg-gray-100 px-1 py-0.5 rounded text-gray-800">-</code>), colon (<code class="bg-gray-100 px-1 py-0.5 rounded text-gray-800">:</code>), or tab.
+                    Separate Korean, Nepali meaning, and optional image URL using only hyphens (<code class="bg-gray-100 px-1 py-0.5 rounded text-gray-800">-</code>).
                 </p>
 
                 <form id="bulkForm" class="space-y-4">
                     <div>
-                        <textarea id="bulkTextarea" rows="8" required placeholder="학교 - विद्यालय&#10;학생 - विद्यार्थी&#10;선생님 - शिक्षक&#10;친구 - साथी" class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#5B00FF] focus:border-[#5B00FF] outline-none font-kr text-sm leading-relaxed"></textarea>
+                        <textarea id="bulkTextarea" rows="8" required placeholder="학교 - विद्यालय&#10;사과 - स्याउ - https://example.com/apple.png&#10;선생님 - शिक्षक&#10;친구 - साथी" class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#5B00FF] focus:border-[#5B00FF] outline-none font-kr text-sm leading-relaxed"></textarea>
                     </div>
 
                     <div class="flex items-center justify-between text-xs text-gray-500">
@@ -1234,13 +1234,25 @@
                 for (const line of lines) {
                     const trimmed = line.trim();
                     if (!trimmed) continue;
-                    // Split by hyphen (-, –, —), colon (:), or tab
-                    const match = trimmed.match(/^(.+?)\s*(?:[-–—:]|\t)\s*(.+)$/);
-                    if (match) {
-                        const korean = match[1].trim();
-                        const nepali = match[2].trim();
+
+                    // Only split by hyphen (-, –, —) so colons/commas inside URLs or meanings don't break parsing
+                    const parts = trimmed.split(/\s*[-–—]\s*/);
+                    if (parts.length >= 2) {
+                        const korean = parts[0].trim();
+                        let nepali = '';
+                        let customImage = null;
+
+                        // Check if the last segment is a URL (supports URLs that themselves contain hyphens)
+                        const urlStartIdx = parts.findIndex((p, i) => i >= 2 && /^https?:\/\//i.test(p.trim()));
+                        if (urlStartIdx !== -1) {
+                            nepali = parts.slice(1, urlStartIdx).join(' - ').trim();
+                            customImage = parts.slice(urlStartIdx).join('-').trim();
+                        } else {
+                            nepali = parts.slice(1).join(' - ').trim();
+                        }
+
                         if (korean && nepali) {
-                            parsed.push({ korean, nepali });
+                            parsed.push({ korean, nepali, customImage });
                         }
                     }
                 }
@@ -1273,7 +1285,7 @@
                 e.preventDefault();
                 const items = parseBulkLines(bulkTextarea.value);
                 if (items.length === 0) {
-                    showToast('Format each line as: Korean - Nepali');
+                    showToast('Format each line as: Korean - Nepali - URL');
                     return;
                 }
 
@@ -1282,7 +1294,7 @@
                     korean: item.korean,
                     nepali: item.nepali,
                     imageKey: null,
-                    customImage: null,
+                    customImage: item.customImage,
                     favorite: false
                 }));
 
