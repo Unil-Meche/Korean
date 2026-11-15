@@ -1,162 +1,1234 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#5900e9">
-<title>EPS Topic Vocabulary</title>
-<style>
-:root{--purple:#5900e9;--blue:#216eb4;--lav:#dcdafa;--grad:linear-gradient(105deg,#9560b8,#c06eaa);--ink:#111;--muted:#777}
-*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:Arial,"Noto Sans KR",sans-serif}
-button,input,textarea{font:inherit}button{cursor:pointer}
-.topbar{height:76px;background:var(--purple);color:white;display:flex;align-items:center;padding:0 14px;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 2px 5px #0002}
-.topbar .back,.topbar .menu{border:0;background:transparent;color:white;font-size:30px;width:42px;padding:0}
-.topbar h1{font-size:clamp(20px,5vw,30px);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;margin:0}
-.topbar .heart{font-size:31px;color:#f0182b;background:none;border:0}
-.flag{font-size:31px;background:none;border:0}
-.practice{background:#2196e8;color:white;border:0;border-radius:7px;padding:15px 24px;font-size:20px;letter-spacing:2px;font-weight:700}
-main{max-width:900px;margin:auto;padding:18px 10px 40px}
-.home-list{display:flex;flex-direction:column;gap:34px;padding:0 17px}
-.chapter{min-height:100px;border:0;border-radius:38px;background:var(--grad);color:#fff;text-align:left;padding:20px 28px;font-size:clamp(23px,5vw,32px);font-weight:700;box-shadow:0 3px 6px #0003}
-.chapter:active{transform:scale(.99)}
-.toolbar{display:flex;align-items:center;gap:12px;padding:0 8px 22px;min-height:94px}
-.auto-wrap{display:flex;align-items:center;gap:9px;font-weight:700;font-size:19px;white-space:nowrap}
-.switch{width:58px;height:31px;border:0;border-radius:20px;background:#ddd;position:relative;padding:0}
-.switch:before{content:"";position:absolute;width:27px;height:27px;border-radius:50%;background:#aaa;left:2px;top:2px;transition:.2s;box-shadow:0 1px 3px #0003}
-.switch.on{background:#9ce6df}.switch.on:before{left:29px;background:#08c5b6}
-.roundtool{width:70px;height:70px;border:0;border-radius:50%;background:#a8d6f4;color:white;font-size:29px;display:grid;place-items:center;flex:none}
-.roundtool.active{background:#2499e8}
-.speed{flex:1;min-width:45px;accent-color:#08c5b6}
-.word-list{display:flex;flex-direction:column;gap:10px}
-.word{position:relative;background:var(--lav);border-radius:18px;text-align:center;padding:19px 54px 18px;min-height:75px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-.word.featured{background:var(--blue);color:white}
-.word .ko{font-size:clamp(22px,5vw,29px);font-weight:800;line-height:1.3}
-.word .en{font-size:clamp(18px,4.2vw,25px);font-weight:700;line-height:1.3}
-.word img{max-width:min(76%,420px);max-height:300px;object-fit:contain;background:white;margin:0 auto 0}
-.word .fav{position:absolute;right:12px;bottom:10px;border:0;background:none;color:#888;font-size:34px;line-height:1;padding:0}
-.word .fav.selected{color:#ef2638}
-.word .edit{position:absolute;right:12px;top:8px;border:0;background:#ffffff88;border-radius:8px;color:#333;font-size:13px;padding:4px 7px;display:none}
-.word:hover .edit{display:block}
-.empty{border:2px dashed #c9c4eb;border-radius:18px;padding:35px 18px;text-align:center;color:#777;line-height:1.6}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
-.action{border:0;border-radius:10px;padding:12px 15px;background:#eee;color:#222;font-weight:700}
-.action.primary{background:#2196e8;color:white}
-.modal-back{position:fixed;inset:0;background:#0008;z-index:10;display:none;align-items:flex-end;justify-content:center}
-.modal-back.show{display:flex}
-.modal{background:white;width:min(100%,620px);max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:22px}
-.modal h2{margin:0 0 18px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0;font-weight:700}
-.field input,.field textarea{border:1px solid #bbb;border-radius:9px;padding:12px;width:100%;font-weight:400}
-.field textarea{min-height:75px}.modal-buttons{display:flex;gap:10px;margin-top:18px}.modal-buttons button{flex:1}
-.hidden{display:none!important}
-.notice{font-size:13px;color:#666;margin-top:10px}
-@media(min-width:700px){main{padding-top:24px}.home-list{gap:26px}.chapter{min-height:90px}.modal-back{align-items:center}.modal{border-radius:20px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>EPS-TOPIK Vocabulary - Chapters 1-60</title>
+  <style>
+    :root {
+      --header-bg: #5b00ff;
+      --practice-btn: #2589ff;
+      --card-bg: #d9dcf2;
+      --card-active-bg: #1b65b8;
+      --card-active-text: #ffffff;
+      --toggle-active: #1b82e6;
+      --toggle-inactive: #b5cbe3;
+      --teal-accent: #18d4c8;
+      --heart-inactive: #7c828d;
+      --heart-active: #e63946;
+      --bg-color: #f4f5fa;
+      --text-dark: #111827;
+      --text-muted: #4b5563;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Noto Sans Devanagari", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    /* Views container */
+    .view-screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+    }
+    .view-screen.active {
+      display: flex;
+    }
+
+    /* Top Header */
+    .top-bar {
+      background-color: var(--header-bg);
+      color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+    }
+
+    .app-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 250px;
+    }
+
+    .practice-btn {
+      background-color: var(--practice-btn);
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Chapters List View */
+    .chapters-list {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .chapter-item {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1f2937;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .chapter-item:active {
+      transform: scale(0.98);
+      background-color: #cbd1f0;
+    }
+
+    .chapter-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+
+    /* Control Toolbar */
+    .controls-bar {
+      background-color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 56px;
+      z-index: 25;
+      gap: 8px;
+    }
+
+    .auto-play-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .auto-play-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1f2937;
+      white-space: nowrap;
+    }
+
+    /* Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider-toggle {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #d1d5db;
+      transition: 0.25s;
+      border-radius: 24px;
+    }
+
+    .slider-toggle:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: #9ca3af;
+      transition: 0.25s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider-toggle {
+      background-color: #a7f3d0;
+    }
+
+    input:checked + .slider-toggle:before {
+      transform: translateX(18px);
+      background-color: var(--teal-accent);
+    }
+
+    .circle-toggles {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .circle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--toggle-inactive);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .circle-btn.active {
+      background-color: var(--toggle-active);
+    }
+
+    .speed-slider-wrap {
+      display: flex;
+      align-items: center;
+      width: 70px;
+    }
+
+    input[type="range"].teal-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      background: #d1d5db;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    input[type="range"].teal-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--teal-accent);
+      cursor: pointer;
+    }
+
+    .sub-bar {
+      background-color: #f9fafb;
+      padding: 6px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f0f5;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .sub-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .chip-btn {
+      background: #eef2ff;
+      color: #4338ca;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .chip-btn.active {
+      background: #4338ca;
+      color: #ffffff;
+    }
+
+    /* Card List */
+    .cards-list {
+      padding: 10px 10px 90px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .vocab-card {
+      background-color: var(--card-bg);
+      border-radius: 10px;
+      padding: 16px 38px 16px 38px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      min-height: 58px;
+      user-select: none;
+    }
+
+    .vocab-card.active {
+      background-color: var(--card-active-bg);
+      color: var(--card-active-text);
+      box-shadow: 0 4px 12px rgba(27, 101, 184, 0.3);
+    }
+
+    .card-image-box {
+      width: 155px;
+      height: 135px;
+      background-color: #ffffff;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .korean-word {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .nepali-word {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-top: 6px;
+      color: #1f2937;
+      line-height: 1.35;
+    }
+
+    .vocab-card.active .nepali-word {
+      color: #e0f2fe;
+    }
+
+    .speech-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-top: 6px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      display: inline-block;
+    }
+
+    .heart-btn {
+      position: absolute;
+      right: 12px;
+      bottom: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--heart-inactive);
+    }
+
+    .heart-btn.favorited {
+      color: var(--heart-active);
+    }
+
+    .vocab-card.active .heart-btn:not(.favorited) {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .edit-card-btn {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      background: rgba(255, 255, 255, 0.55);
+      border: none;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #374151;
+    }
+
+    .vocab-card.active .edit-card-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    /* Floating Add Button */
+    .fab-add {
+      position: fixed;
+      bottom: 22px;
+      right: calc(50% - 215px);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background-color: var(--header-bg);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 14px rgba(91, 0, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+    }
+
+    @media (max-width: 480px) {
+      .fab-add { right: 20px; }
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .modal-title { font-size: 1.1rem; font-weight: 700; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; color: #374151; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; outline: none; }
+
+    .btn-row { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+    .btn { padding: 9px 16px; border-radius: 8px; border: none; font-weight: 600; font-size: 0.9rem; cursor: pointer; }
+    .btn-secondary { background: #e5e7eb; color: #374151; }
+    .btn-primary { background: var(--header-bg); color: #ffffff; }
+    .btn-danger { background: #fee2e2; color: #b91c1c; margin-right: auto; }
+
+    /* Practice Mode Overlay */
+    .practice-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-color);
+      z-index: 60;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+    .practice-overlay.open { display: flex; }
+
+    .practice-container {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .practice-body {
+      flex: 1;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .flashcard-box {
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 28px 20px;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      cursor: pointer;
+    }
+
+    .practice-controls { display: flex; gap: 12px; width: 100%; margin-top: 24px; }
+    .practice-controls .btn { flex: 1; padding: 13px; font-size: 1rem; }
+
+    .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+  </style>
 </head>
 <body>
-<header class="topbar">
-  <button class="back hidden" id="back" aria-label="Back">‹</button>
-  <button class="menu" id="menu" aria-label="Menu">☰</button>
-  <h1 id="heading">Eps-Topik Vocabulary</h1>
-  <button class="heart" id="showFavs" aria-label="Favorites">♥</button>
-  <button class="flag" id="language" title="English translation">🇺🇸</button>
-  <button class="practice hidden" id="practice">PRACTICE</button>
-</header>
-<main>
-  <section id="home">
-    <div class="home-list" id="chapterList"></div>
-    <div class="actions" style="padding:8px 17px"><button class="action primary" id="addChapter">＋ Add chapter</button><button class="action" id="exportData">Export backup</button><button class="action" id="importData">Import backup</button><input id="importFile" type="file" accept="application/json" class="hidden"></div>
-  </section>
-  <section id="vocab" class="hidden">
-    <div class="toolbar">
-      <div class="auto-wrap">Auto Play <button class="switch" id="auto" aria-label="Toggle autoplay" aria-pressed="false"></button></div>
-      <button class="roundtool active" id="translation" title="Show/hide translations" aria-label="Toggle translations">A文</button>
-      <button class="roundtool active" id="images" title="Show/hide images" aria-label="Toggle images">🖼️</button>
-      <input class="speed" id="speed" type="range" min=".65" max="1.35" step=".05" value="1" title="Speech speed">
+  <div class="app-container">
+
+    <!-- SCREEN 1: CHAPTERS HOME SCREEN -->
+    <div id="homeScreen" class="view-screen active">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="app-title">EPS-TOPIK Chapters (1-60)</span>
+        </div>
+      </header>
+      <div class="chapters-list" id="chaptersListContainer">
+        <!-- Chapters generated by JS -->
+      </div>
     </div>
-    <div class="actions">
-      <button class="action primary" id="addWord">＋ Add vocabulary</button>
-      <button class="action" id="stopAudio">■ Stop audio</button>
+
+    <!-- SCREEN 2: VOCABULARY FLASHCARD VIEW -->
+    <div id="vocabScreen" class="view-screen">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="icon-btn" id="backToHomeBtn" title="Back to Chapters" aria-label="Back">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <span class="app-title" id="chapterTitleHeader">Chapter 1</span>
+        </div>
+        <button class="practice-btn" id="openPracticeBtn">PRACTICE</button>
+      </header>
+
+      <!-- Controls Bar -->
+      <div class="controls-bar">
+        <div class="auto-play-group">
+          <span class="auto-play-label">Auto Play</span>
+          <label class="switch">
+            <input type="checkbox" id="autoPlayToggle" />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <div class="circle-toggles">
+          <button class="circle-btn active" id="toggleTranslationBtn" title="Toggle Translation">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+          </button>
+          <button class="circle-btn active" id="toggleImageBtn" title="Toggle Pictures">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </button>
+        </div>
+
+        <div class="speed-slider-wrap">
+          <input type="range" min="1" max="5" value="3" class="teal-slider" id="speedSlider" />
+        </div>
+      </div>
+
+      <!-- Sub-bar -->
+      <div class="sub-bar">
+        <span id="wordCountText">0 words</span>
+        <div class="sub-actions">
+          <button class="chip-btn" id="filterFavBtn">Favorites</button>
+          <button class="chip-btn" id="openBulkBtn">Bulk Import</button>
+          <button class="chip-btn" id="shuffleListBtn">Shuffle</button>
+          <button class="chip-btn" id="resetChapterBtn">Reset Ch 1</button>
+        </div>
+      </div>
+
+      <!-- Vocabulary Cards List -->
+      <main class="cards-list" id="cardsList"></main>
+
+      <!-- Floating Add Button -->
+      <button class="fab-add" id="openAddModalBtn" title="Add Word">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
     </div>
-    <div class="word-list" id="wordList"></div>
-  </section>
-</main>
-<div class="modal-back" id="modalBack">
-  <form class="modal" id="wordForm">
-    <h2 id="formTitle">Add vocabulary</h2>
-    <input type="hidden" id="wordId">
-    <label class="field">Korean vocabulary <input id="wordKo" required placeholder="예: 안녕하세요"></label>
-    <label class="field">English meaning <input id="wordEn" placeholder="e.g. Hello"></label>
-    <label class="field">Nepali meaning (optional) <input id="wordNp" placeholder="जस्तै: नमस्कार"></label>
-    <label class="field">Picture for this word <input id="wordImage" type="file" accept="image/*"></label>
-    <div id="currentImage" class="notice"></div>
-    <div class="modal-buttons"><button type="button" class="action" id="cancelForm">Cancel</button><button class="action primary" type="submit">Save vocabulary</button></div>
-    <p class="notice">All chapters start empty. Add words and pictures whenever you are ready. Changes are saved in this browser.</p>
-  </form>
-</div>
-<div class="modal-back" id="chapterModal">
-  <form class="modal" id="chapterForm">
-    <h2>Add chapter</h2><label class="field">Chapter title <input id="chapterName" required placeholder="예: 9. 교통과 여행"></label>
-    <div class="modal-buttons"><button type="button" class="action" id="cancelChapter">Cancel</button><button class="action primary">Save chapter</button></div>
-  </form>
-</div>
-<script>
-const initialChapters = [
-  "1. 자기소개","2. 생활용품","3. 위치와 장소","4. 동작과 사물",
-  "5. 날짜와 요일","6. 하루 일과","7. 계절과 날씨","8. 가족과 친구"
-];
-const STORE="eps-topic-vocab-v1";
-let data=loadData(), currentChapter=null, showTranslation=true, showImages=true, favoritesOnly=false, autoPlay=false, speechToken=0, practiceMode=false;
-function loadData(){try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&Array.isArray(x.chapters))return x}catch(e){}return {chapters:initialChapters.map((name,i)=>({id:"c"+i,name,words:[]}))}}
-function save(){try{localStorage.setItem(STORE,JSON.stringify(data))}catch(e){alert("Storage is full. Try using smaller images or export a backup.")}}
-const $=id=>document.getElementById(id);
-function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function renderHome(){
- $("home").classList.remove("hidden");$("vocab").classList.add("hidden");$("back").classList.add("hidden");$("menu").classList.remove("hidden");$("practice").classList.add("hidden");$("heading").textContent="Eps-Topik Vocabulary";
- $("chapterList").innerHTML=data.chapters.map(c=>`<button class="chapter" data-chapter="${esc(c.id)}">${esc(c.name)}</button>`).join("");
- document.querySelectorAll("[data-chapter]").forEach(b=>b.onclick=()=>openChapter(b.dataset.chapter));
-}
-function openChapter(id){currentChapter=data.chapters.find(c=>c.id===id);if(!currentChapter)return;favoritesOnly=false;practiceMode=false;
- $("home").classList.add("hidden");$("vocab").classList.remove("hidden");$("back").classList.remove("hidden");$("menu").classList.add("hidden");$("practice").classList.remove("hidden");$("heading").textContent=currentChapter.name;renderWords()}
-function renderWords(){
- if(!currentChapter)return;
- let words=currentChapter.words.filter(w=>!favoritesOnly||w.favorite);
- $("wordList").innerHTML=words.length?words.map((w,i)=>`<article class="word ${i===0?"featured":""}" data-word="${esc(w.id)}">
- ${w.image&&showImages?`<img src="${w.image}" alt="${esc(w.ko)}">`:""}
- <div class="ko">${esc(w.ko)}</div>
- ${showTranslation&&w.en?`<div class="en">${esc(w.en)}</div>`:""}
- ${showTranslation&&w.np?`<div class="en">${esc(w.np)}</div>`:""}
- <button class="fav ${w.favorite?"selected":""}" data-fav="${esc(w.id)}" aria-label="Favorite">${w.favorite?"♥":"♥"}</button>
- <button class="edit" data-edit="${esc(w.id)}">Edit</button></article>`).join(""):`<div class="empty"><b>This chapter is empty.</b><br>Add Korean vocabulary, its meaning and an optional picture.<br><br>Use “＋ Add vocabulary” to start.</div>`;
- document.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{const w=findWord(b.dataset.fav);w.favorite=!w.favorite;save();renderWords()});
- document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editWord(b.dataset.edit));
-}
-function findWord(id){return currentChapter.words.find(w=>w.id===id)}
-function openModal(){ $("modalBack").classList.add("show")}
-function closeModal(){ $("modalBack").classList.remove("show");$("wordForm").reset();$("wordId").value="";$("currentImage").textContent=""}
-function editWord(id){let w=findWord(id);if(!w)return;$("formTitle").textContent="Edit vocabulary";$("wordId").value=w.id;$("wordKo").value=w.ko;$("wordEn").value=w.en||"";$("wordNp").value=w.np||"";$("currentImage").textContent=w.image?"A picture is currently saved. Choose another picture to replace it.":"";openModal()}
-$("addWord").onclick=()=>{$("formTitle").textContent="Add vocabulary";closeModal();openModal()};
-$("cancelForm").onclick=closeModal;
-$("wordForm").onsubmit=async e=>{e.preventDefault();let id=$("wordId").value,w=id?findWord(id):{id:"w"+Date.now(),favorite:false};w.ko=$("wordKo").value.trim();w.en=$("wordEn").value.trim();w.np=$("wordNp").value.trim();let file=$("wordImage").files[0];if(file){if(file.size>1200000){alert("Please choose an image smaller than 1.2 MB.");return}w.image=await new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}if(!id)currentChapter.words.push(w);save();closeModal();renderWords()};
-$("translation").onclick=()=>{showTranslation=!showTranslation;$("translation").classList.toggle("active",showTranslation);renderWords()};
-$("images").onclick=()=>{showImages=!showImages;$("images").classList.toggle("active",showImages);renderWords()};
-$("back").onclick=()=>{stopSpeech();renderHome()};
-$("menu").onclick=()=>{favoritesOnly=false;renderHome()};
-$("showFavs").onclick=()=>{if(!currentChapter){let all=data.chapters.flatMap(c=>c.words.filter(w=>w.favorite).map(w=>({...w,chapterName:c.name})));alert(all.length?all.map(w=>w.chapterName+" — "+w.ko+" / "+(w.en||"")).join("\\n"):"No favorites yet.");}else{favoritesOnly=!favoritesOnly;renderWords()}};
-$("language").onclick=()=>{showTranslation=!showTranslation;$("translation").classList.toggle("active",showTranslation);if(currentChapter)renderWords()};
-$("addChapter").onclick=()=>$("chapterModal").classList.add("show");
-$("cancelChapter").onclick=()=>$("chapterModal").classList.remove("show");
-$("chapterForm").onsubmit=e=>{e.preventDefault();data.chapters.push({id:"c"+Date.now(),name:$("chapterName").value.trim(),words:[]});save();$("chapterName").value="";$("chapterModal").classList.remove("show");renderHome()};
-$("exportData").onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="eps-vocabulary-backup.json";a.click();URL.revokeObjectURL(a.href)};
-$("importData").onclick=()=>$("importFile").click();
-$("importFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text());if(!Array.isArray(x.chapters))throw Error();data=x;save();renderHome();alert("Backup imported.")}catch(err){alert("That backup file is not valid.")}e.target.value=""};
-function stopSpeech(){speechToken++;if("speechSynthesis"in window) speechSynthesis.cancel();autoPlay=false;$("auto").classList.remove("on");$("auto").setAttribute("aria-pressed","false")}
-$("stopAudio").onclick=stopSpeech;
-function speak(text,lang,rate){return new Promise(resolve=>{if(!text||!("speechSynthesis"in window)){resolve();return}let u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=rate;u.onend=resolve;u.onerror=resolve;speechSynthesis.speak(u)})}
-async function playSequence(){let token=++speechToken;let list=currentChapter.words.filter(w=>!favoritesOnly||w.favorite);let idx=0;while(autoPlay&&token===speechToken&&idx<list.length){let w=list[idx],rate=Number($("speed").value);await speak(w.ko,"ko-KR",rate);if(!autoPlay||token!==speechToken)break;await speak(w.en||w.np||"", "en-US",rate);if(!autoPlay||token!==speechToken)break;await speak(w.ko,"ko-KR",rate);idx++}if(token===speechToken){autoPlay=false;$("auto").classList.remove("on");$("auto").setAttribute("aria-pressed","false")}}
-$("auto").onclick=()=>{if(autoPlay){stopSpeech()}else{if(!currentChapter||!currentChapter.words.length){alert("Add vocabulary before starting Auto Play.");return}autoPlay=true;$("auto").classList.add("on");$("auto").setAttribute("aria-pressed","true");playSequence()}};
-$("practice").onclick=()=>{if(!currentChapter.words.length){alert("Add vocabulary before starting practice.");return}let list=currentChapter.words,idx=0;function show(){let w=list[idx];$("wordList").innerHTML=`<article class="word featured"><div class="ko">${esc(w.ko)}</div><button class="action" id="revealPractice">Show meaning</button><div id="practiceMeaning" class="hidden"><div class="en">${esc(w.en||"")}</div><div class="en">${esc(w.np||"")}</div></div></article><div class="actions"><button class="action" id="prevPractice">Previous</button><button class="action primary" id="nextPractice">Next</button><button class="action" id="exitPractice">Exit practice</button></div>`;$("revealPractice").onclick=()=>$("practiceMeaning").classList.toggle("hidden");$("nextPractice").onclick=()=>{idx=(idx+1)%list.length;show()};$("prevPractice").onclick=()=>{idx=(idx-1+list.length)%list.length;show()};$("exitPractice").onclick=renderWords}show()};
-renderHome();
-</script>
+
+  </div>
+
+  <!-- Add/Edit Word Modal -->
+  <div class="modal-backdrop" id="cardModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modalTitle">Add Vocabulary Card</h2>
+        <button class="icon-btn" id="closeModalBtn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <form id="cardForm">
+        <input type="hidden" id="editCardId" />
+        <div class="form-group">
+          <label for="koreanInput">Korean Word *</label>
+          <input type="text" id="koreanInput" class="form-input" placeholder="e.g., 학교" required />
+        </div>
+        <div class="form-group">
+          <label for="nepaliInput">Nepali Meaning *</label>
+          <input type="text" id="nepaliInput" class="form-input" placeholder="e.g., विद्यालय" required />
+        </div>
+        <div class="form-group">
+          <label for="imageUrlInput">Picture URL</label>
+          <input type="url" id="imageUrlInput" class="form-input" placeholder="https://..." />
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-danger" id="deleteCardBtn" style="display: none;">Delete</button>
+          <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bulk Import Modal -->
+  <div class="modal-backdrop" id="bulkModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 class="modal-title">Bulk Import Chapter</h2>
+        <button class="icon-btn" id="closeBulkBtn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="form-group">
+        <label for="bulkTextarea">Paste format: <code>Korean - Nepali - ImageURL</code></label>
+        <textarea id="bulkTextarea" class="form-input" rows="8" placeholder="학교 - विद्यालय - https://..."></textarea>
+      </div>
+      <div class="btn-row">
+        <button type="button" class="btn btn-secondary" id="cancelBulkBtn">Cancel</button>
+        <button type="button" class="btn btn-primary" id="importBulkBtn">Import All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Practice Mode Overlay -->
+  <div class="practice-overlay" id="practiceOverlay">
+    <div class="practice-container">
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <button class="icon-btn" id="closePracticeBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+          <span class="app-title">Practice Mode</span>
+        </div>
+        <span id="practiceCounter" style="font-weight: 600; font-size: 0.9rem;">1 / 1</span>
+      </header>
+      <div class="practice-body">
+        <div class="flashcard-box" id="practiceCard">
+          <div id="practiceImgWrap" class="card-image-box" style="width: 180px; height: 155px;"></div>
+          <div id="practiceKorean" class="korean-word" style="font-size: 1.75rem;"></div>
+          <div id="practiceNepali" class="nepali-word" style="font-size: 1.3rem; margin-top: 12px;"></div>
+          <p id="practiceHint" style="font-size: 0.8rem; color: #6b7280; margin-top: 16px;">Tap card to reveal answer</p>
+        </div>
+        <div class="practice-controls">
+          <button class="btn btn-secondary" id="practiceSpeakBtn">Listen (KR→NP→KR)</button>
+          <button class="btn btn-primary" id="practiceNextBtn">Next Word</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Chapter 1 Initial Dataset from your screenshot
+    const CHAPTER_1_DATA = [
+      { id: 1, korean: "자기소개", nepali: "आत्मपरिचय (Self-Introduction)", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400", favorite: false },
+      { id: 2, korean: "나라 이름", nepali: "देशको नाम (Country Name)", image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400", favorite: false },
+      { id: 3, korean: "한국", nepali: "दक्षिण कोरिया (South Korea)", image: "https://images.unsplash.com/photo-1538485399061-127027357065?w=400", favorite: false },
+      { id: 4, korean: "네팔", nepali: "नेपाल (Nepal)", image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400", favorite: false },
+      { id: 5, korean: "동티모르", nepali: "पूर्वी टिमोर (East Timor)", image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400", favorite: false },
+      { id: 6, korean: "라오스", nepali: "लाओस (Laos)", image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400", favorite: false },
+      { id: 7, korean: "몽골", nepali: "मंगोलिया (Mongolia)", image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400", favorite: false },
+      { id: 8, korean: "미얀마", nepali: "म्यानमार (Myanmar)", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400", favorite: false },
+      { id: 9, korean: "방글라데시", nepali: "बंगलादेश (Bangladesh)", image: "https://images.unsplash.com/photo-1578593141460-845b4a44b82c?w=400", favorite: false },
+      { id: 10, korean: "베트남", nepali: "भियतनाम (Vietnam)", image: "https://images.unsplash.com/photo-1509114397022-ed747cca3f65?w=400", favorite: false },
+      { id: 11, korean: "스리랑카", nepali: "श्रीलंका (Sri Lanka)", image: "https://images.unsplash.com/photo-1588598111609-7f8d80f45d3d?w=400", favorite: false },
+      { id: 12, korean: "우즈베키스탄", nepali: "उज्वेकिस्तान (Uzbekistan)", image: "https://images.unsplash.com/photo-1558862130-9d2c943b1945?w=400", favorite: false },
+      { id: 13, korean: "인도네시아", nepali: "इन्डोनेसिया (Indonesia)", image: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=400", favorite: false },
+      { id: 14, korean: "중국", nepali: "चीन (China)", image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400", favorite: false },
+      { id: 15, korean: "캄보디아", nepali: "कम्बोडिया (Cambodia)", image: "https://images.unsplash.com/photo-1570789210967-2cac24afeb00?w=400", favorite: false },
+      { id: 16, korean: "키르기스스탄", nepali: "किर्गिस्तान (Kyrgyzstan)", image: "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=400", favorite: false },
+      { id: 17, korean: "타지키스탄", nepali: "ताजकिस्तान (Tajikistan)", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400", favorite: false },
+      { id: 18, korean: "태국", nepali: "थाइल्याण्ड (Thailand)", image: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=400", favorite: false },
+      { id: 19, korean: "파키스탄", nepali: "पाकिस्तान (Pakistan)", image: "https://images.unsplash.com/photo-1605648916361-9bc12ad6a569?w=400", favorite: false },
+      { id: 20, korean: "필리핀", nepali: "फिलिपिन्स (Philippines)", image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400", favorite: false },
+      { id: 21, korean: "예멘", nepali: "यमन (Yemen)", image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=400", favorite: false },
+      { id: 22, korean: "사람", nepali: "मानिस (Person)", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", favorite: false },
+      { id: 23, korean: "이름", nepali: "नाम (Name)", image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400", favorite: false },
+      { id: 24, korean: "국적", nepali: "राष्ट्रियता (Nationality)", image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400", favorite: false },
+      { id: 25, korean: "누구", nepali: "को (Who)", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400", favorite: false },
+      { id: 26, korean: "직업명", nepali: "पेसाको नाम (Job Title)", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400", favorite: false },
+      { id: 27, korean: "선생님", nepali: "शिक्षक (Teacher)", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400", favorite: false },
+      { id: 28, korean: "회사원", nepali: "कम्पनी कर्मचारी (Employee)", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400", favorite: false },
+      { id: 29, korean: "학생", nepali: "विद्यार्थी (Student)", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400", favorite: false },
+      { id: 30, korean: "근로자", nepali: "कामदार (Worker)", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400", favorite: false },
+      { id: 31, korean: "경찰관", nepali: "प्रहरी (Police)", image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=400", favorite: false },
+      { id: 32, korean: "소방관", nepali: "दमकलकर्मी (Firefighter)", image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400", favorite: false },
+      { id: 33, korean: "공무원", nepali: "सरकारी कर्मचारी (Official)", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400", favorite: false },
+      { id: 34, korean: "점원", nepali: "पसल सहायक (Store Clerk)", image: "https://images.unsplash.com/photo-1556742049-0a67d553c2a5?w=400", favorite: false },
+      { id: 35, korean: "의사", nepali: "डाक्टर (Doctor)", image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400", favorite: false },
+      { id: 36, korean: "간호사", nepali: "नर्स (Nurse)", image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=400", favorite: false },
+      { id: 37, korean: "요리사", nepali: "शेफ (Chef)", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400", favorite: false },
+      { id: 38, korean: "운전기사", nepali: "ड्राइभर (Driver)", image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400", favorite: false },
+      { id: 39, korean: "기술자", nepali: "प्राविधिक (Technician)", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400", favorite: false },
+      { id: 40, korean: "목수", nepali: "सिकर्मी (Carpenter)", image: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400", favorite: false },
+      { id: 41, korean: "농부", nepali: "किसान (Farmer)", image: "https://images.unsplash.com/photo-1595974482597-4f6c4f700363?w=400", favorite: false },
+      { id: 42, korean: "어부", nepali: "माझी (Fisherman)", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400", favorite: false },
+      { id: 43, korean: "네", nepali: "हजुर (Yes)", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400", favorite: false },
+      { id: 44, korean: "아니요", nepali: "होइन (No)", image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=400", favorite: false },
+      { id: 45, korean: "안녕", nepali: "नमस्ते (Hello)", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=400", favorite: false },
+      { id: 46, korean: "반가움", nepali: "खुसी (Gladness)", image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400", favorite: false },
+      { id: 47, korean: "제스처", nepali: "इशारा (Gesture)", image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=400", favorite: false },
+      { id: 48, korean: "공작인", nepali: "कारखाना कामदार", image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400", favorite: false },
+      { id: 49, korean: "발차기", nepali: "किक (Kick)", image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400", favorite: false }
+    ];
+
+    // State
+    let allChaptersData = {};
+    let currentChapter = 1;
+    let showTranslation = true;
+    let showImage = true;
+    let onlyFavorites = false;
+    let activeCardId = null;
+    let autoPlayActive = false;
+    let autoPlayTimer = null;
+    let currentSpeechToken = 0;
+    let currentSpeechStepLabel = "";
+
+    // Practice mode state
+    let practiceIndex = 0;
+    let practiceRevealed = false;
+    let practiceDeck = [];
+
+    function loadAllData() {
+      const saved = localStorage.getItem("eps_60_chapters_data_v1");
+      if (saved) {
+        try {
+          allChaptersData = JSON.parse(saved);
+        } catch (e) {
+          allChaptersData = {};
+        }
+      }
+      // Ensure Chapter 1 exists
+      if (!allChaptersData[1] || allChaptersData[1].length === 0) {
+        allChaptersData[1] = [...CHAPTER_1_DATA];
+      }
+      // Ensure Chapters 2 to 60 exist as empty arrays if not present
+      for (let i = 2; i <= 60; i++) {
+        if (!allChaptersData[i]) {
+          allChaptersData[i] = [];
+        }
+      }
+      saveAllData();
+    }
+
+    function saveAllData() {
+      localStorage.setItem("eps_60_chapters_data_v1", JSON.stringify(allChaptersData));
+    }
+
+    // Render Chapters Home Screen
+    function renderChaptersList() {
+      const container = document.getElementById("chaptersListContainer");
+      let html = "";
+      for (let i = 1; i <= 60; i++) {
+        const count = (allChaptersData[i] || []).length;
+        html += `
+          <div class="chapter-item" data-ch="${i}">
+            <span>Chapter ${i} ${i === 1 ? "(자기소개)" : ""}</span>
+            <span class="chapter-count">${count} words</span>
+          </div>
+        `;
+      }
+      container.innerHTML = html;
+
+      document.querySelectorAll(".chapter-item").forEach(item => {
+        item.addEventListener("click", () => {
+          const ch = Number(item.dataset.ch);
+          openChapter(ch);
+        });
+      });
+    }
+
+    function openChapter(ch) {
+      currentChapter = ch;
+      document.getElementById("chapterTitleHeader").textContent = `Chapter ${ch}`;
+      const cards = allChaptersData[currentChapter] || [];
+      activeCardId = cards.length > 0 ? cards[0].id : null;
+      
+      document.getElementById("homeScreen").classList.remove("active");
+      document.getElementById("vocabScreen").classList.add("active");
+      renderCards();
+    }
+
+    document.getElementById("backToHomeBtn").addEventListener("click", () => {
+      stopAutoPlay();
+      document.getElementById("vocabScreen").classList.remove("active");
+      document.getElementById("homeScreen").classList.add("active");
+      renderChaptersList();
+    });
+
+    // Speech helpers
+    function speakUtterance(text, lang, rate, token) {
+      return new Promise((resolve) => {
+        if (!("speechSynthesis" in window) || !text) { resolve(); return; }
+        if (token !== currentSpeechToken) { resolve(); return; }
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.rate = rate;
+        const voices = window.speechSynthesis.getVoices();
+        if (lang.startsWith("ko")) {
+          const koVoice = voices.find(v => v.lang.toLowerCase().includes("ko"));
+          if (koVoice) utterance.voice = koVoice;
+        } else if (lang.startsWith("ne")) {
+          const neVoice = voices.find(v => v.lang.toLowerCase().includes("ne")) || voices.find(v => v.lang.toLowerCase().includes("hi"));
+          if (neVoice) utterance.voice = neVoice;
+        }
+
+        let finished = false;
+        const done = () => { if (!finished) { finished = true; resolve(); } };
+        utterance.onend = done;
+        utterance.onerror = done;
+        setTimeout(done, Math.max(1800, text.length * 220));
+        window.speechSynthesis.speak(utterance);
+      });
+    }
+
+    function pauseMs(ms, token) {
+      return new Promise((resolve) => {
+        setTimeout(() => { resolve(token === currentSpeechToken); }, ms);
+      });
+    }
+
+    // 3-Step Pronunciation: Korean -> Nepali -> Korean
+    async function speakCardSequence(card, onComplete) {
+      if (!card) return;
+      currentSpeechToken++;
+      const token = currentSpeechToken;
+      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+
+      const speedVal = parseInt(document.getElementById("speedSlider").value, 10);
+      const rate = 0.8 + (speedVal - 1) * 0.08;
+
+      currentSpeechStepLabel = "1/3 Korean";
+      updateActiveSpeechBadge();
+      await speakUtterance(card.korean, "ko-KR", rate, token);
+      if (token !== currentSpeechToken) return;
+
+      if (!(await pauseMs(320, token))) return;
+
+      if (card.nepali) {
+        currentSpeechStepLabel = "2/3 Nepali";
+        updateActiveSpeechBadge();
+        await speakUtterance(card.nepali, "ne-NP", rate, token);
+        if (token !== currentSpeechToken) return;
+        if (!(await pauseMs(320, token))) return;
+      }
+
+      currentSpeechStepLabel = "3/3 Korean";
+      updateActiveSpeechBadge();
+      await speakUtterance(card.korean, "ko-KR", rate, token);
+      if (token !== currentSpeechToken) return;
+
+      currentSpeechStepLabel = "";
+      updateActiveSpeechBadge();
+      if (typeof onComplete === "function") onComplete(token);
+    }
+
+    function updateActiveSpeechBadge() {
+      const badge = document.querySelector(".vocab-card.active .speech-badge");
+      if (badge) {
+        if (currentSpeechStepLabel) {
+          badge.textContent = currentSpeechStepLabel;
+          badge.style.display = "inline-block";
+        } else {
+          badge.style.display = "none";
+        }
+      }
+    }
+
+    // Render Cards
+    function getVisibleCards() {
+      const cards = allChaptersData[currentChapter] || [];
+      return onlyFavorites ? cards.filter(c => c.favorite) : cards;
+    }
+
+    function renderCards() {
+      const visible = getVisibleCards();
+      document.getElementById("wordCountText").textContent = `${visible.length} words`;
+
+      if (visible.length === 0) {
+        document.getElementById("cardsList").innerHTML = `
+          <div class="empty-state">
+            <p style="font-weight: 600; margin-bottom: 6px;">Chapter ${currentChapter} is currently empty</p>
+            <p style="font-size: 0.85rem;">Tap the <strong>+</strong> button below or use <strong>Bulk Import</strong> to add words.</p>
+          </div>
+        `;
+        return;
+      }
+
+      document.getElementById("cardsList").innerHTML = visible.map((card) => {
+        const isActive = card.id === activeCardId;
+        const hasImage = Boolean(card.image && card.image.trim() !== "");
+        const hasTranslation = Boolean(card.nepali && card.nepali.trim() !== "");
+
+        return `
+          <div class="vocab-card ${isActive ? "active" : ""}" data-id="${card.id}">
+            <button class="edit-card-btn" data-edit-id="${card.id}" title="Edit">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+            </button>
+            ${showImage && hasImage ? `<div class="card-image-box"><img src="${card.image}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'" /></div>` : ""}
+            <div class="korean-word">${card.korean}</div>
+            ${showTranslation && hasTranslation ? `<div class="nepali-word">${card.nepali}</div>` : ""}
+            ${isActive && currentSpeechStepLabel ? `<span class="speech-badge">${currentSpeechStepLabel}</span>` : `<span class="speech-badge" style="display:none;"></span>`}
+            <button class="heart-btn ${card.favorite ? "favorited" : ""}" data-fav-id="${card.id}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </button>
+          </div>
+        `;
+      }).join("");
+
+      document.querySelectorAll(".vocab-card").forEach(el => {
+        el.addEventListener("click", (e) => {
+          if (e.target.closest(".heart-btn") || e.target.closest(".edit-card-btn")) return;
+          const id = Number(el.dataset.id);
+          activeCardId = id;
+          const card = (allChaptersData[currentChapter] || []).find(c => c.id === id);
+          renderCards();
+          if (card) {
+            if (autoPlayActive) runAutoPlayStep();
+            else speakCardSequence(card);
+          }
+        });
+      });
+
+      document.querySelectorAll(".heart-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const id = Number(btn.dataset.favId);
+          const card = (allChaptersData[currentChapter] || []).find(c => c.id === id);
+          if (card) { card.favorite = !card.favorite; saveAllData(); renderCards(); }
+        });
+      });
+
+      document.querySelectorAll(".edit-card-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openEditModal(Number(btn.dataset.editId));
+        });
+      });
+    }
+
+    // Toggles
+    document.getElementById("toggleTranslationBtn").addEventListener("click", function() {
+      showTranslation = !showTranslation;
+      this.classList.toggle("active", showTranslation);
+      renderCards();
+    });
+    document.getElementById("toggleImageBtn").addEventListener("click", function() {
+      showImage = !showImage;
+      this.classList.toggle("active", showImage);
+      renderCards();
+    });
+    document.getElementById("filterFavBtn").addEventListener("click", function() {
+      onlyFavorites = !onlyFavorites;
+      this.classList.toggle("active", onlyFavorites);
+      renderCards();
+    });
+
+    function shuffleCards() {
+      const cards = allChaptersData[currentChapter] || [];
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      saveAllData();
+      renderCards();
+    }
+    document.getElementById("shuffleListBtn").addEventListener("click", shuffleCards);
+
+    document.getElementById("resetChapterBtn").addEventListener("click", () => {
+      if (confirm("Reset Chapter " + currentChapter + " to default data?")) {
+        stopAutoPlay();
+        if (currentChapter === 1) {
+          allChaptersData[1] = [...CHAPTER_1_DATA];
+        } else {
+          allChaptersData[currentChapter] = [];
+        }
+        saveAllData();
+        openChapter(currentChapter);
+      }
+    });
+
+    // Auto Play
+    function runAutoPlayStep() {
+      if (!autoPlayActive) return;
+      const visible = getVisibleCards();
+      if (visible.length === 0) return;
+      let idx = visible.findIndex(c => c.id === activeCardId);
+      if (idx === -1) { idx = 0; activeCardId = visible[0].id; }
+
+      renderCards();
+      const activeEl = document.querySelector(`.vocab-card[data-id="${activeCardId}"]`);
+      if (activeEl) activeEl.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      speakCardSequence(visible[idx], (token) => {
+        if (!autoPlayActive || token !== currentSpeechToken) return;
+        clearTimeout(autoPlayTimer);
+        const speedVal = parseInt(document.getElementById("speedSlider").value, 10);
+        const delays = { 1: 1800, 2: 1300, 3: 900, 4: 550, 5: 300 };
+        autoPlayTimer = setTimeout(() => {
+          if (!autoPlayActive) return;
+          const vis = getVisibleCards();
+          if (vis.length === 0) return;
+          const curIdx = vis.findIndex(c => c.id === activeCardId);
+          activeCardId = vis[(curIdx + 1) % vis.length].id;
+          runAutoPlayStep();
+        }, delays[speedVal] || 900);
+      });
+    }
+
+    function stopAutoPlay() {
+      autoPlayActive = false;
+      document.getElementById("autoPlayToggle").checked = false;
+      currentSpeechToken++;
+      currentSpeechStepLabel = "";
+      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      clearTimeout(autoPlayTimer);
+      updateActiveSpeechBadge();
+    }
+
+    document.getElementById("autoPlayToggle").addEventListener("change", (e) => {
+      if (e.target.checked) {
+        if (getVisibleCards().length > 0) { autoPlayActive = true; runAutoPlayStep(); }
+        else e.target.checked = false;
+      } else { stopAutoPlay(); }
+    });
+
+    // Modal Add/Edit
+    const cardModal = document.getElementById("cardModal");
+    const editCardIdInput = document.getElementById("editCardId");
+    const koreanInput = document.getElementById("koreanInput");
+    const nepaliInput = document.getElementById("nepaliInput");
+    const imageUrlInput = document.getElementById("imageUrlInput");
+    const deleteCardBtn = document.getElementById("deleteCardBtn");
+
+    function openAddModal() {
+      stopAutoPlay();
+      document.getElementById("modalTitle").textContent = "Add Vocabulary Card (Ch " + currentChapter + ")";
+      editCardIdInput.value = "";
+      koreanInput.value = "";
+      nepaliInput.value = "";
+      imageUrlInput.value = "";
+      deleteCardBtn.style.display = "none";
+      cardModal.classList.add("open");
+    }
+
+    function openEditModal(id) {
+      stopAutoPlay();
+      const card = (allChaptersData[currentChapter] || []).find(c => c.id === id);
+      if (!card) return;
+      document.getElementById("modalTitle").textContent = "Edit Card";
+      editCardIdInput.value = card.id;
+      koreanInput.value = card.korean;
+      nepaliInput.value = card.nepali;
+      imageUrlInput.value = card.image || "";
+      deleteCardBtn.style.display = "block";
+      cardModal.classList.add("open");
+    }
+
+    document.getElementById("openAddModalBtn").addEventListener("click", openAddModal);
+    document.getElementById("closeModalBtn").addEventListener("click", () => cardModal.classList.remove("open"));
+    document.getElementById("cancelModalBtn").addEventListener("click", () => cardModal.classList.remove("open"));
+
+    document.getElementById("cardForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const korean = koreanInput.value.trim();
+      const nepali = nepaliInput.value.trim();
+      const image = imageUrlInput.value.trim();
+      const editId = editCardIdInput.value;
+      const cards = allChaptersData[currentChapter] || [];
+
+      if (editId) {
+        const card = cards.find(c => c.id === Number(editId));
+        if (card) { card.korean = korean; card.nepali = nepali; card.image = image; }
+      } else {
+        const newId = cards.length > 0 ? Math.max(...cards.map(c => c.id)) + 1 : 1;
+        cards.unshift({ id: newId, korean, nepali, image, favorite: false });
+        activeCardId = newId;
+      }
+      allChaptersData[currentChapter] = cards;
+      saveAllData();
+      renderCards();
+      cardModal.classList.remove("open");
+    });
+
+    deleteCardBtn.addEventListener("click", () => {
+      const editId = Number(editCardIdInput.value);
+      allChaptersData[currentChapter] = (allChaptersData[currentChapter] || []).filter(c => c.id !== editId);
+      saveAllData();
+      renderCards();
+      cardModal.classList.remove("open");
+    });
+
+    // Bulk Import Modal
+    const bulkModal = document.getElementById("bulkModal");
+    document.getElementById("openBulkBtn").addEventListener("click", () => { stopAutoPlay(); document.getElementById("bulkTextarea").value = ""; bulkModal.classList.add("open"); });
+    document.getElementById("closeBulkBtn").addEventListener("click", () => bulkModal.classList.remove("open"));
+    document.getElementById("cancelBulkBtn").addEventListener("click", () => bulkModal.classList.remove("open"));
+
+    document.getElementById("importBulkBtn").addEventListener("click", () => {
+      const raw = document.getElementById("bulkTextarea").value.trim();
+      if (!raw) return;
+      const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      let cards = allChaptersData[currentChapter] || [];
+      let nextId = cards.length > 0 ? Math.max(...cards.map(c => c.id)) + 1 : 1;
+      const newItems = [];
+
+      lines.forEach(line => {
+        const parts = line.split(/\s*[-–—|:]\s*/);
+        if (parts.length >= 2) {
+          const korean = parts[0].trim();
+          const nepali = parts[1].trim();
+          const image = parts.length >= 3 ? parts.slice(2).join("-").trim() : "";
+          if (korean && nepali) {
+            newItems.push({ id: nextId++, korean, nepali, image, favorite: false });
+          }
+        }
+      });
+
+      if (newItems.length > 0) {
+        allChaptersData[currentChapter] = [...newItems, ...cards];
+        activeCardId = newItems[0].id;
+        saveAllData();
+        renderCards();
+      }
+      bulkModal.classList.remove("open");
+    });
+
+    // Practice Mode
+    const practiceOverlay = document.getElementById("practiceOverlay");
+    let practiceDeck = [];
+    document.getElementById("openPracticeBtn").addEventListener("click", () => {
+      stopAutoPlay();
+      const visible = getVisibleCards();
+      if (visible.length === 0) return;
+      practiceDeck = [...visible].sort(() => Math.random() - 0.5);
+      practiceIndex = 0;
+      practiceRevealed = false;
+      practiceOverlay.classList.add("open");
+      renderPracticeCard();
+      speakCardSequence(practiceDeck[0]);
+    });
+    document.getElementById("closePracticeBtn").addEventListener("click", () => {
+      currentSpeechToken++;
+      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      practiceOverlay.classList.remove("open");
+    });
+    document.getElementById("practiceCard").addEventListener("click", () => {
+      practiceRevealed = !practiceRevealed;
+      renderPracticeCard();
+    });
+    document.getElementById("practiceSpeakBtn").addEventListener("click", () => {
+      if (practiceDeck[practiceIndex]) speakCardSequence(practiceDeck[practiceIndex]);
+    });
+    document.getElementById("practiceNextBtn").addEventListener("click", () => {
+      practiceIndex = (practiceIndex + 1) % practiceDeck.length;
+      practiceRevealed = false;
+      renderPracticeCard();
+      speakCardSequence(practiceDeck[practiceIndex]);
+    });
+
+    function renderPracticeCard() {
+      if (practiceDeck.length === 0) return;
+      const card = practiceDeck[practiceIndex];
+      document.getElementById("practiceCounter").textContent = `${practiceIndex + 1} / ${practiceDeck.length}`;
+      document.getElementById("practiceKorean").textContent = card.korean;
+      const imgWrap = document.getElementById("practiceImgWrap");
+      if (card.image && (showImage || practiceRevealed)) {
+        imgWrap.style.display = "flex";
+        imgWrap.innerHTML = `<img src="${card.image}" alt="" />`;
+      } else { imgWrap.style.display = "none"; }
+      const nep = document.getElementById("practiceNepali");
+      if (practiceRevealed || showTranslation) {
+        nep.textContent = card.nepali; nep.style.visibility = "visible";
+      } else {
+        nep.textContent = "••••••"; nep.style.visibility = "hidden";
+      }
+    }
+
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+
+    // Initialize
+    loadAllData();
+    renderChaptersList();
+  </script>
 </body>
 </html>
