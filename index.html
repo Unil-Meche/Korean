@@ -1,1 +1,162 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5900e9">
+<title>EPS Topic Vocabulary</title>
+<style>
+:root{--purple:#5900e9;--blue:#216eb4;--lav:#dcdafa;--grad:linear-gradient(105deg,#9560b8,#c06eaa);--ink:#111;--muted:#777}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font-family:Arial,"Noto Sans KR",sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.topbar{height:76px;background:var(--purple);color:white;display:flex;align-items:center;padding:0 14px;gap:14px;position:sticky;top:0;z-index:5;box-shadow:0 2px 5px #0002}
+.topbar .back,.topbar .menu{border:0;background:transparent;color:white;font-size:30px;width:42px;padding:0}
+.topbar h1{font-size:clamp(20px,5vw,30px);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;margin:0}
+.topbar .heart{font-size:31px;color:#f0182b;background:none;border:0}
+.flag{font-size:31px;background:none;border:0}
+.practice{background:#2196e8;color:white;border:0;border-radius:7px;padding:15px 24px;font-size:20px;letter-spacing:2px;font-weight:700}
+main{max-width:900px;margin:auto;padding:18px 10px 40px}
+.home-list{display:flex;flex-direction:column;gap:34px;padding:0 17px}
+.chapter{min-height:100px;border:0;border-radius:38px;background:var(--grad);color:#fff;text-align:left;padding:20px 28px;font-size:clamp(23px,5vw,32px);font-weight:700;box-shadow:0 3px 6px #0003}
+.chapter:active{transform:scale(.99)}
+.toolbar{display:flex;align-items:center;gap:12px;padding:0 8px 22px;min-height:94px}
+.auto-wrap{display:flex;align-items:center;gap:9px;font-weight:700;font-size:19px;white-space:nowrap}
+.switch{width:58px;height:31px;border:0;border-radius:20px;background:#ddd;position:relative;padding:0}
+.switch:before{content:"";position:absolute;width:27px;height:27px;border-radius:50%;background:#aaa;left:2px;top:2px;transition:.2s;box-shadow:0 1px 3px #0003}
+.switch.on{background:#9ce6df}.switch.on:before{left:29px;background:#08c5b6}
+.roundtool{width:70px;height:70px;border:0;border-radius:50%;background:#a8d6f4;color:white;font-size:29px;display:grid;place-items:center;flex:none}
+.roundtool.active{background:#2499e8}
+.speed{flex:1;min-width:45px;accent-color:#08c5b6}
+.word-list{display:flex;flex-direction:column;gap:10px}
+.word{position:relative;background:var(--lav);border-radius:18px;text-align:center;padding:19px 54px 18px;min-height:75px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.word.featured{background:var(--blue);color:white}
+.word .ko{font-size:clamp(22px,5vw,29px);font-weight:800;line-height:1.3}
+.word .en{font-size:clamp(18px,4.2vw,25px);font-weight:700;line-height:1.3}
+.word img{max-width:min(76%,420px);max-height:300px;object-fit:contain;background:white;margin:0 auto 0}
+.word .fav{position:absolute;right:12px;bottom:10px;border:0;background:none;color:#888;font-size:34px;line-height:1;padding:0}
+.word .fav.selected{color:#ef2638}
+.word .edit{position:absolute;right:12px;top:8px;border:0;background:#ffffff88;border-radius:8px;color:#333;font-size:13px;padding:4px 7px;display:none}
+.word:hover .edit{display:block}
+.empty{border:2px dashed #c9c4eb;border-radius:18px;padding:35px 18px;text-align:center;color:#777;line-height:1.6}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px}
+.action{border:0;border-radius:10px;padding:12px 15px;background:#eee;color:#222;font-weight:700}
+.action.primary{background:#2196e8;color:white}
+.modal-back{position:fixed;inset:0;background:#0008;z-index:10;display:none;align-items:flex-end;justify-content:center}
+.modal-back.show{display:flex}
+.modal{background:white;width:min(100%,620px);max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:22px}
+.modal h2{margin:0 0 18px}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0;font-weight:700}
+.field input,.field textarea{border:1px solid #bbb;border-radius:9px;padding:12px;width:100%;font-weight:400}
+.field textarea{min-height:75px}.modal-buttons{display:flex;gap:10px;margin-top:18px}.modal-buttons button{flex:1}
+.hidden{display:none!important}
+.notice{font-size:13px;color:#666;margin-top:10px}
+@media(min-width:700px){main{padding-top:24px}.home-list{gap:26px}.chapter{min-height:90px}.modal-back{align-items:center}.modal{border-radius:20px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="back hidden" id="back" aria-label="Back">‹</button>
+  <button class="menu" id="menu" aria-label="Menu">☰</button>
+  <h1 id="heading">Eps-Topik Vocabulary</h1>
+  <button class="heart" id="showFavs" aria-label="Favorites">♥</button>
+  <button class="flag" id="language" title="English translation">🇺🇸</button>
+  <button class="practice hidden" id="practice">PRACTICE</button>
+</header>
+<main>
+  <section id="home">
+    <div class="home-list" id="chapterList"></div>
+    <div class="actions" style="padding:8px 17px"><button class="action primary" id="addChapter">＋ Add chapter</button><button class="action" id="exportData">Export backup</button><button class="action" id="importData">Import backup</button><input id="importFile" type="file" accept="application/json" class="hidden"></div>
+  </section>
+  <section id="vocab" class="hidden">
+    <div class="toolbar">
+      <div class="auto-wrap">Auto Play <button class="switch" id="auto" aria-label="Toggle autoplay" aria-pressed="false"></button></div>
+      <button class="roundtool active" id="translation" title="Show/hide translations" aria-label="Toggle translations">A文</button>
+      <button class="roundtool active" id="images" title="Show/hide images" aria-label="Toggle images">🖼️</button>
+      <input class="speed" id="speed" type="range" min=".65" max="1.35" step=".05" value="1" title="Speech speed">
+    </div>
+    <div class="actions">
+      <button class="action primary" id="addWord">＋ Add vocabulary</button>
+      <button class="action" id="stopAudio">■ Stop audio</button>
+    </div>
+    <div class="word-list" id="wordList"></div>
+  </section>
+</main>
+<div class="modal-back" id="modalBack">
+  <form class="modal" id="wordForm">
+    <h2 id="formTitle">Add vocabulary</h2>
+    <input type="hidden" id="wordId">
+    <label class="field">Korean vocabulary <input id="wordKo" required placeholder="예: 안녕하세요"></label>
+    <label class="field">English meaning <input id="wordEn" placeholder="e.g. Hello"></label>
+    <label class="field">Nepali meaning (optional) <input id="wordNp" placeholder="जस्तै: नमस्कार"></label>
+    <label class="field">Picture for this word <input id="wordImage" type="file" accept="image/*"></label>
+    <div id="currentImage" class="notice"></div>
+    <div class="modal-buttons"><button type="button" class="action" id="cancelForm">Cancel</button><button class="action primary" type="submit">Save vocabulary</button></div>
+    <p class="notice">All chapters start empty. Add words and pictures whenever you are ready. Changes are saved in this browser.</p>
+  </form>
+</div>
+<div class="modal-back" id="chapterModal">
+  <form class="modal" id="chapterForm">
+    <h2>Add chapter</h2><label class="field">Chapter title <input id="chapterName" required placeholder="예: 9. 교통과 여행"></label>
+    <div class="modal-buttons"><button type="button" class="action" id="cancelChapter">Cancel</button><button class="action primary">Save chapter</button></div>
+  </form>
+</div>
+<script>
+const initialChapters = [
+  "1. 자기소개","2. 생활용품","3. 위치와 장소","4. 동작과 사물",
+  "5. 날짜와 요일","6. 하루 일과","7. 계절과 날씨","8. 가족과 친구"
+];
+const STORE="eps-topic-vocab-v1";
+let data=loadData(), currentChapter=null, showTranslation=true, showImages=true, favoritesOnly=false, autoPlay=false, speechToken=0, practiceMode=false;
+function loadData(){try{const x=JSON.parse(localStorage.getItem(STORE));if(x&&Array.isArray(x.chapters))return x}catch(e){}return {chapters:initialChapters.map((name,i)=>({id:"c"+i,name,words:[]}))}}
+function save(){try{localStorage.setItem(STORE,JSON.stringify(data))}catch(e){alert("Storage is full. Try using smaller images or export a backup.")}}
+const $=id=>document.getElementById(id);
+function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderHome(){
+ $("home").classList.remove("hidden");$("vocab").classList.add("hidden");$("back").classList.add("hidden");$("menu").classList.remove("hidden");$("practice").classList.add("hidden");$("heading").textContent="Eps-Topik Vocabulary";
+ $("chapterList").innerHTML=data.chapters.map(c=>`<button class="chapter" data-chapter="${esc(c.id)}">${esc(c.name)}</button>`).join("");
+ document.querySelectorAll("[data-chapter]").forEach(b=>b.onclick=()=>openChapter(b.dataset.chapter));
+}
+function openChapter(id){currentChapter=data.chapters.find(c=>c.id===id);if(!currentChapter)return;favoritesOnly=false;practiceMode=false;
+ $("home").classList.add("hidden");$("vocab").classList.remove("hidden");$("back").classList.remove("hidden");$("menu").classList.add("hidden");$("practice").classList.remove("hidden");$("heading").textContent=currentChapter.name;renderWords()}
+function renderWords(){
+ if(!currentChapter)return;
+ let words=currentChapter.words.filter(w=>!favoritesOnly||w.favorite);
+ $("wordList").innerHTML=words.length?words.map((w,i)=>`<article class="word ${i===0?"featured":""}" data-word="${esc(w.id)}">
+ ${w.image&&showImages?`<img src="${w.image}" alt="${esc(w.ko)}">`:""}
+ <div class="ko">${esc(w.ko)}</div>
+ ${showTranslation&&w.en?`<div class="en">${esc(w.en)}</div>`:""}
+ ${showTranslation&&w.np?`<div class="en">${esc(w.np)}</div>`:""}
+ <button class="fav ${w.favorite?"selected":""}" data-fav="${esc(w.id)}" aria-label="Favorite">${w.favorite?"♥":"♥"}</button>
+ <button class="edit" data-edit="${esc(w.id)}">Edit</button></article>`).join(""):`<div class="empty"><b>This chapter is empty.</b><br>Add Korean vocabulary, its meaning and an optional picture.<br><br>Use “＋ Add vocabulary” to start.</div>`;
+ document.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{const w=findWord(b.dataset.fav);w.favorite=!w.favorite;save();renderWords()});
+ document.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editWord(b.dataset.edit));
+}
+function findWord(id){return currentChapter.words.find(w=>w.id===id)}
+function openModal(){ $("modalBack").classList.add("show")}
+function closeModal(){ $("modalBack").classList.remove("show");$("wordForm").reset();$("wordId").value="";$("currentImage").textContent=""}
+function editWord(id){let w=findWord(id);if(!w)return;$("formTitle").textContent="Edit vocabulary";$("wordId").value=w.id;$("wordKo").value=w.ko;$("wordEn").value=w.en||"";$("wordNp").value=w.np||"";$("currentImage").textContent=w.image?"A picture is currently saved. Choose another picture to replace it.":"";openModal()}
+$("addWord").onclick=()=>{$("formTitle").textContent="Add vocabulary";closeModal();openModal()};
+$("cancelForm").onclick=closeModal;
+$("wordForm").onsubmit=async e=>{e.preventDefault();let id=$("wordId").value,w=id?findWord(id):{id:"w"+Date.now(),favorite:false};w.ko=$("wordKo").value.trim();w.en=$("wordEn").value.trim();w.np=$("wordNp").value.trim();let file=$("wordImage").files[0];if(file){if(file.size>1200000){alert("Please choose an image smaller than 1.2 MB.");return}w.image=await new Promise((res,rej)=>{let r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}if(!id)currentChapter.words.push(w);save();closeModal();renderWords()};
+$("translation").onclick=()=>{showTranslation=!showTranslation;$("translation").classList.toggle("active",showTranslation);renderWords()};
+$("images").onclick=()=>{showImages=!showImages;$("images").classList.toggle("active",showImages);renderWords()};
+$("back").onclick=()=>{stopSpeech();renderHome()};
+$("menu").onclick=()=>{favoritesOnly=false;renderHome()};
+$("showFavs").onclick=()=>{if(!currentChapter){let all=data.chapters.flatMap(c=>c.words.filter(w=>w.favorite).map(w=>({...w,chapterName:c.name})));alert(all.length?all.map(w=>w.chapterName+" — "+w.ko+" / "+(w.en||"")).join("\\n"):"No favorites yet.");}else{favoritesOnly=!favoritesOnly;renderWords()}};
+$("language").onclick=()=>{showTranslation=!showTranslation;$("translation").classList.toggle("active",showTranslation);if(currentChapter)renderWords()};
+$("addChapter").onclick=()=>$("chapterModal").classList.add("show");
+$("cancelChapter").onclick=()=>$("chapterModal").classList.remove("show");
+$("chapterForm").onsubmit=e=>{e.preventDefault();data.chapters.push({id:"c"+Date.now(),name:$("chapterName").value.trim(),words:[]});save();$("chapterName").value="";$("chapterModal").classList.remove("show");renderHome()};
+$("exportData").onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="eps-vocabulary-backup.json";a.click();URL.revokeObjectURL(a.href)};
+$("importData").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let x=JSON.parse(await f.text());if(!Array.isArray(x.chapters))throw Error();data=x;save();renderHome();alert("Backup imported.")}catch(err){alert("That backup file is not valid.")}e.target.value=""};
+function stopSpeech(){speechToken++;if("speechSynthesis"in window) speechSynthesis.cancel();autoPlay=false;$("auto").classList.remove("on");$("auto").setAttribute("aria-pressed","false")}
+$("stopAudio").onclick=stopSpeech;
+function speak(text,lang,rate){return new Promise(resolve=>{if(!text||!("speechSynthesis"in window)){resolve();return}let u=new SpeechSynthesisUtterance(text);u.lang=lang;u.rate=rate;u.onend=resolve;u.onerror=resolve;speechSynthesis.speak(u)})}
+async function playSequence(){let token=++speechToken;let list=currentChapter.words.filter(w=>!favoritesOnly||w.favorite);let idx=0;while(autoPlay&&token===speechToken&&idx<list.length){let w=list[idx],rate=Number($("speed").value);await speak(w.ko,"ko-KR",rate);if(!autoPlay||token!==speechToken)break;await speak(w.en||w.np||"", "en-US",rate);if(!autoPlay||token!==speechToken)break;await speak(w.ko,"ko-KR",rate);idx++}if(token===speechToken){autoPlay=false;$("auto").classList.remove("on");$("auto").setAttribute("aria-pressed","false")}}
+$("auto").onclick=()=>{if(autoPlay){stopSpeech()}else{if(!currentChapter||!currentChapter.words.length){alert("Add vocabulary before starting Auto Play.");return}autoPlay=true;$("auto").classList.add("on");$("auto").setAttribute("aria-pressed","true");playSequence()}};
+$("practice").onclick=()=>{if(!currentChapter.words.length){alert("Add vocabulary before starting practice.");return}let list=currentChapter.words,idx=0;function show(){let w=list[idx];$("wordList").innerHTML=`<article class="word featured"><div class="ko">${esc(w.ko)}</div><button class="action" id="revealPractice">Show meaning</button><div id="practiceMeaning" class="hidden"><div class="en">${esc(w.en||"")}</div><div class="en">${esc(w.np||"")}</div></div></article><div class="actions"><button class="action" id="prevPractice">Previous</button><button class="action primary" id="nextPractice">Next</button><button class="action" id="exitPractice">Exit practice</button></div>`;$("revealPractice").onclick=()=>$("practiceMeaning").classList.toggle("hidden");$("nextPractice").onclick=()=>{idx=(idx+1)%list.length;show()};$("prevPractice").onclick=()=>{idx=(idx-1+list.length)%list.length;show()};$("exitPractice").onclick=renderWords}show()};
+renderHome();
+</script>
+</body>
+</html>
